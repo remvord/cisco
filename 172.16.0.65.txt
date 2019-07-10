@@ -1,0 +1,215 @@
+
+Floor4-1(24)-sw#ena
+Floor4-1(24)-sw#bREw7axaEsx.
+Translating "bREw7axaEsx."...domain server (255.255.255.255)
+% Unknown command or computer name, or unable to find computer address
+Floor4-1(24)-sw#terminal length 0
+Floor4-1(24)-sw#sh run
+Building configuration...
+
+Current configuration : 4813 bytes
+!
+! No configuration change since last restart
+!
+version 15.0
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+service sequence-numbers
+!
+hostname Floor4-1(24)-sw
+!
+boot-start-marker
+boot-end-marker
+!
+enable secret 5 $1$wKui$OxKsfCK/Vv973aD/QdShK/
+!
+username admin privilege 15 password 7 0204367E1C510E394D6B1A014B
+no aaa new-model
+clock timezone MSK 3 0
+system mtu routing 1500
+!
+!
+ip domain-name nipbank.ru
+!
+password encryption aes
+!
+crypto pki trustpoint TP-self-signed-472827520
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-472827520
+ revocation-check none
+ rsakeypair TP-self-signed-472827520
+!
+!
+crypto pki certificate chain TP-self-signed-472827520
+ certificate self-signed 01
+  30820229 30820192 A0030201 02020101 300D0609 2A864886 F70D0101 05050030 
+  30312E30 2C060355 04031325 494F532D 53656C66 2D536967 6E65642D 43657274 
+  69666963 6174652D 34373238 32373532 30301E17 0D393330 33303130 30303131 
+  325A170D 32303031 30313030 30303030 5A303031 2E302C06 03550403 1325494F 
+  532D5365 6C662D53 69676E65 642D4365 72746966 69636174 652D3437 32383237 
+  35323030 819F300D 06092A86 4886F70D 01010105 0003818D 00308189 02818100 
+  E8652BA5 37468CE6 E3D3C63E 08752054 B029CE57 643EE317 9F941D16 000AD418 
+  45030165 3A1D8201 9BA3339A 9433552D 26224769 BEE418DA 7743D4D3 8AD91452 
+  8F3AA77E 376C3895 56E294B5 12DBA62C 2C54310B 748BF050 E0A16CD8 52E8F5C5 
+  CA8EE65F FAE1DE41 E152AE0B C47F4DD2 C3C16CDE 0E442E59 3E21BC58 0913EDE1 
+  02030100 01A35330 51300F06 03551D13 0101FF04 05300301 01FF301F 0603551D 
+  23041830 168014D9 C4FA2253 A35840AD 19664B79 98875482 28343530 1D060355 
+  1D0E0416 0414D9C4 FA2253A3 5840AD19 664B7998 87548228 3435300D 06092A86 
+  4886F70D 01010505 00038181 0083470F 7592DC64 EF4D6828 E6900B64 4BB2C685 
+  1D170332 A99E6A76 F40BF13F 52ED5194 104004FF 1C48B04E 2BFF30D7 7710C108 
+  44F9FD93 BB87B1AD 330ED742 7752D435 4B726B00 7B37A609 0BC699BF 33DCB5A8 
+  39124A3E B7619113 AA47925E C01AFCB8 D8698780 B6CE0189 5C922C91 BD0B7DBE 
+  95A4CC90 CAF11375 F721FAD4 46
+  	quit
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+ip ssh version 2
+!
+!
+!
+!
+!
+interface Port-channel1
+ description Link to DC-sw
+ switchport mode trunk
+!
+interface FastEthernet0/1
+ description Svetlova PC+IP-phone
+ switchport mode access
+ switchport voice vlan 43
+ spanning-tree portfast
+!
+interface FastEthernet0/2
+ switchport access vlan 43
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/3
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/4
+!
+interface FastEthernet0/5
+!
+interface FastEthernet0/6
+ description IP-TELE Svetlova 
+ switchport access vlan 43
+ switchport mode access
+ switchport voice vlan 43
+ spanning-tree portfast
+!
+interface FastEthernet0/7
+ description FinMonitoring
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/8
+ description Upravl PC+IP-phone
+ switchport access vlan 43
+ switchport mode access
+ switchport voice vlan 43
+ spanning-tree portfast
+!
+interface FastEthernet0/9
+!
+interface FastEthernet0/10
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/11
+!
+interface FastEthernet0/12
+!
+interface FastEthernet0/13
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/14
+!
+interface FastEthernet0/15
+ switchport mode access
+ switchport voice vlan 43
+ spanning-tree portfast
+!
+interface FastEthernet0/16
+!
+interface FastEthernet0/17
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/18
+ description CDA-Agent
+!
+interface FastEthernet0/19
+!
+interface FastEthernet0/20
+ description GUBANK_172.22.23.64
+ switchport access vlan 772
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/21
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/22
+!
+interface FastEthernet0/23
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/24
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/1
+ description Link to DC-sw (2/0/15)
+ switchport mode trunk
+ channel-group 1 mode active
+!
+interface GigabitEthernet0/2
+ description Link to DC-sw (3/0/12)
+ switchport mode trunk
+ channel-group 1 mode active
+!
+interface Vlan1
+ ip address 172.16.0.65 255.255.255.0
+!
+interface Vlan772
+ ip address 172.22.23.71 255.255.255.192
+!
+ip default-gateway 172.16.0.1
+ip http server
+ip http authentication local
+ip http secure-server
+logging trap debugging
+logging host 192.168.120.158
+snmp-server community public RO
+!
+!
+line con 0
+ password 7 0306692E115820544F2C0A1D59
+line vty 0 4
+ exec-timeout 0 0
+ login local
+ transport input ssh
+line vty 5 15
+ exec-timeout 0 0
+ login local
+ transport input ssh
+!
+ntp server 192.168.120.50
+end
+
+Floor4-1(24)-sw#

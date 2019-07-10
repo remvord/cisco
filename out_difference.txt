@@ -1,0 +1,19 @@
+-  user NIPBANK\maltsev
+-  network-object object SWIFTBRIDGE
+- object-group network DM_INLINE_NETWORK_37
+-  network-object host 194.105.130.18
+-  network-object host 194.105.130.19
+-  network-object host 194.105.130.8
+-  network-object host 194.105.130.9
+-  network-object host 194.105.131.18
+-  network-object host 194.105.131.19
+-  network-object host 212.248.17.130
+-  network-object host 89.175.162.246
+- access-list ACL-WEBPROXY-TRAFFIC remark KONSULTANT
+- access-list ACL-WEBPROXY-TRAFFIC extended deny tcp host 192.168.120.45 object-group DM_INLINE_NETWORK_37 object-group DM_INLINE_TCP_25 
+- access-list ACL-WEBPROXY-TRAFFIC remark AUDIT
+- access-list ACL-WEBPROXY-TRAFFIC extended deny tcp host 192.168.120.115 any object-group DM_INLINE_TCP_38 
+- access-list ACL-WEBPROXY-TRAFFIC remark SIGNALIZACIA
+- access-list ACL-WEBPROXY-TRAFFIC extended deny tcp object-group DM_INLINE_NETWORK_27 any object-group DM_INLINE_TCP_31 
+-  vpn-tunnel-protocol l2tp-ipsec 
+- Cryptochecksum:9575250d4202f65ca0d293d6065a59a7

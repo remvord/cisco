@@ -1,0 +1,47 @@
+#
+//192.168.120.10/users /mnt cifs username=winuser,password=winuserpasswd,uid=nobody,iocharset=utf8,noperm 0 0
+тут нужны выши пароли на windows 
+эту строку нужно добавить в /etc/fstab
+а потом выполнить mount /m
+
+sudo mount //192.168.120.10/users -t cifs -o uid=1000,gid=1000,username=test /mnt/Список телефонов.xls
+
+теперь у вас папка смонтирована в  /mnt/
+попройбуйте PyCharm
+смотрите, правильный подход иметь сетевую папку примонтированную всегда
+т.е. можно в fstab прописать строку и она будет монтировать при старте системы
+а в PyCharm это делать неправильно, т.к. во-первых нужны права root
+во-вторых код будет потом работать без PyCharm :)
+согласен
+
+//192.168.120.10/users /mnt cifs username=vorobyevs,password=winuserpasswd,uid=nobody,iocharset=utf8,ro 0 0
+mount //192.168.120.10/users -t cifs -o uid=1000,gid=1000,username=vorobyevs /mnt/
+
+//192.168.120.10/users /mnt cifs username=vorobyevs,password=winuserpasswd,uid=nobody,iocharset=utf8,ro 0 0
+это нужно добавить в конец файла /etc/fstab
+хорошо, смотрите чтобы проверить, что строка в fstab рабочая, нужно отключить шару 
+теперь вам нужно добавить пароль и подключить в ручную  командой sudo mount /mnt
+или перезагрузить комп, тогда она автоматически подключится
+так а если нужны бы ли бы полные права где менять
+уберите ro и строки настроек монтирования
+
+
+ mount | grepcifs
+ 2024  mount | grep cifs
+ 2025  mount 
+ 2026  sudo mount \\192.168.120.10\Общая /mnt/
+ 2027  sudo mount \\192.168.120.10\users\Общая /mnt/
+ 2028  sudo mount \\192.168.120.10\users\ /mnt/
+ 2029  smbclient 
+ 2030  smbclient \\192/.168.120.10\users
+ 2031  smbclient \\\\192/.168.120.10\\users
+ 2032  smbclient \\\\192.168.120.10\\users
+ 2033  //WINDOWSPC/PublicShares /media/winshare cifs
+ 2034  sudo mount //192.168.120.10/users -t cifs -o uid=1000,gid=1000,username=test /mnt/
+ 2035  sudo mount //192.168.120.10/users -t cifs -o uid=1000,gid=1000,username=vorobyevs /mnt/
+ 2037  ls -l /mnt/
+ 2040  sudo umount /mnt 
+ 2041  sudo mount /mnt 
+ 2042  id
+
+

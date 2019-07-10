@@ -1,0 +1,3823 @@
+Type help or '?' for a list of available commands.
+fw/pri/act> ena
+Password: *********
+fw/pri/act# terminal length 0
+                     ^
+ERROR: % Invalid input detected at '^' marker.
+fw/pri/act# sh run
+: Saved
+:
+ASA Version 8.4(5) 
+!
+hostname fw
+domain-name nipbank.ru
+enable password rK2Qn2AWonA57AJO encrypted
+passwd pUNuESM58DTiE9RR encrypted
+names
+name 192.168.20.2 gate_net20
+name 192.168.20.0 net20
+name 192.168.120.0 private-net
+name 217.147.16.125 xcom
+name 192.168.120.117 REUTERS_Filippov
+name 161.58.226.68 a description 1
+name 193.28.44.141 Raffaizen description RaffBank
+name 192.168.120.47 rem description rem
+name 212.248.17.99 test_dop description 212.248.17.99
+name 62.117.66.75 Mail_ISA_COMKOR description Mail_ISA_COMKOR
+name 62.117.66.74 Out_2_62.117.66.74
+name 172.16.0.37 BIFIT description bifit inside ip
+name 62.117.66.78 BIFIT_OUT description outside bifit ip
+name 172.16.0.233 IP_WebCam_Manage description IP_WebCam_Manage
+name 192.168.120.20 ARbank
+name 172.16.0.221 ARMBANK
+name 83.69.199.30 BIFIT_OUT_MasterTEL
+name 1.1.1.1 TEST
+name 192.168.128.0 Dopoff-Savel
+name 192.168.129.0 Dopoff-Lianozovo
+name 172.16.0.38 DBO
+name 192.168.132.4 ATS-Samsung
+dns-guard
+!
+interface Ethernet0/0
+ no nameif
+ no security-level
+ no ip address
+!
+interface Ethernet0/0.2
+ description GUEST access to Internet
+ vlan 2
+ nameif guest
+ security-level 10
+ ip address 192.168.2.1 255.255.255.0 standby 192.168.2.254 
+!
+interface Ethernet0/0.15
+ description description VipNET-PUB
+ vlan 15
+ nameif PUB-VipNET
+ security-level 15
+ ip address 192.168.15.1 255.255.255.0 
+!
+interface Ethernet0/0.22
+ no vlan
+ no nameif
+ no security-level
+ no ip address
+!
+interface Ethernet0/0.60
+ description VipNET
+ vlan 60
+ nameif Private-VipNET
+ security-level 60
+ ip address 192.168.60.1 255.255.255.0 
+!
+interface Ethernet0/0.300
+ description VPN to URALSIB processing
+ vlan 300
+ nameif uralsib
+ security-level 20
+ ip address 10.24.253.222 255.255.255.248 standby 10.24.253.221 
+!
+interface Ethernet0/0.301
+ description VPN to KARTSTD processing
+ vlan 301
+ nameif kartstd
+ security-level 20
+ ip address 10.255.168.22 255.255.255.0 standby 10.255.168.19 
+!
+interface Ethernet0/0.2222
+ no vlan
+ no nameif
+ no security-level
+ no ip address
+!
+interface Ethernet0/1
+ no nameif
+ no security-level
+ no ip address
+!
+interface Ethernet0/1.20
+ description To INSIDE networks
+ vlan 20
+ nameif inside
+ security-level 100
+ ip address 192.168.20.1 255.255.255.0 standby 192.168.20.254 
+!
+interface Ethernet0/1.100
+ description MGMT network
+ vlan 100
+ nameif mgmt
+ security-level 100
+ ip address 172.16.0.1 255.255.255.0 standby 172.16.0.254 
+!
+interface Ethernet0/1.107
+ description To PROXY networks
+ vlan 107
+ nameif proxy
+ security-level 100
+ ip address 192.168.107.1 255.255.255.0 standby 192.168.107.254 
+!
+interface Ethernet0/1.310
+ description POS-term Private subnet
+ vlan 310
+ nameif pos-term
+ security-level 40
+ ip address 10.10.10.1 255.255.255.0 standby 10.10.10.254 
+!
+interface Ethernet0/1.311
+ vlan 311
+ nameif CB-OTCHET
+ security-level 40
+ ip address 192.168.181.1 255.255.255.0 
+!
+interface Ethernet0/1.312
+ description ZOLOTAYA-KORONA-CUP
+ vlan 312
+ nameif zol-korona
+ security-level 40
+ ip address 10.10.12.1 255.255.255.0 
+!
+interface Ethernet0/2
+ description LAN/STATE Failover Interface
+!
+interface Ethernet0/3
+ description ISP Comcor
+ nameif outside_2
+ security-level 0
+ ip address Out_2_62.117.66.74 255.255.255.248 standby 62.117.66.76 
+!
+interface Management0/0
+ description ZebraTelecom
+ nameif outside
+ security-level 0
+ ip address 217.14.246.34 255.255.255.248 standby 217.14.246.38 
+!
+regex ZR.RU ".*zr\.ru"
+regex ANTIZAPRET ".*antizapret.*"
+regex SWEB.RU ".*sweb\.ru"
+regex V3.MEGACON.SU ".*v3\.megacon\.su"
+regex Megashara "*megashara.*"
+regex ANONYMIZER ".*anonymizer.*"
+regex BANNER.RBC.RU ".*banner\.rbc\.ru"
+regex PIKABU.RU ".*pikabu\.ru"
+regex WILDBERRIES.RU ".*wildberries\.ru"
+regex GUNS.RU ".*guns\.ru"
+regex ZERKALO ".*zerkalo.*"
+regex 4LOL ".*4lol.*"
+regex MOIKRUG ".*moikrug.*"
+regex PROXY ".*proxy.*"
+regex 7YA.RU ".*7ya\.ru"
+regex VHODILKA.RU ".*vhodilka\.ru"
+regex MYBRUTE ".*mybrute.*"
+regex MAIL.RAMBLER.RU ".*mail\.rambler\.ru"
+regex YOUTUBE ".*youtube.*"
+regex VK.COM ".*vk\.com"
+regex PRIVET.RU ".*privet\.ru"
+regex WEBWARPER ".*webwarper.*"
+regex mama.ru "*mama.*"
+regex TWITTER ".*twitter.*"
+regex OBHODI ".*obhodi.*"
+regex MAGIC.RU ".*magic\.ru"
+regex DATING ".*dating.*"
+regex VKONTAKTE ".*vkontakte.*"
+regex VKRUGUDRUZEI ".*vkrugudruzei.*"
+regex NEUTRALXE ".*neutralxe.*"
+regex TWOYSTYLE.RU ".*twoystyle\.ru"
+regex FACEBOOK ".*facebook.*"
+regex TIMP ".*timp.*"
+regex ANONIMAIZER ".*anonimaizer.*"
+regex FISHKI ".*fishki.*"
+regex ANONIMAJZER ".*anonimajzer.*"
+regex MEDIAGET "*mediaget*"
+regex MAIL.YA.RU ".*mail\.ya\.ru"
+regex RTC.1TV.RU ".*rtc\.1tv\.ru"
+regex GIDEPARK ".*gidepark.*"
+regex MINERABI ".*minerabi.*"
+regex rutracker.org "*rutracker.*"
+regex FOTKI.YANDEX.RU ".*fotki\.yandex\.ru"
+regex ARTFACET ".*artfacet.*"
+regex LIVEJOURNAL ".*livejournal.*"
+regex DOSTUPEST ".*dostupest.*"
+regex CLUB-SALE.RU ".*club-sale\.ru"
+regex ANONIMKA ".*anonimka.*"
+regex YAPLAKAL ".*yaplakal.*"
+regex PAGEWASH ".*pagewash.*"
+regex mamochki.by "*mamochki.*"
+regex BENZCLUB ".*benzclub.*"
+regex ATWOLA.COM ".*atwola\.com"
+regex ODNOKLASSNIKI ".*odnoklassniki.*"
+regex MAMBA ".*mamba.*"
+regex MPA.ONE.MICROSOFT.COM ".*mpa\.one\.microsoft\.com"
+regex GOODSFORHOME.RU ".*goodsforhome\.ru"
+regex GMAIL ".*gmail.*"
+regex MAIL.YANDEX.RU ".*mail\.yandex\.ru"
+regex LIVEPLANET ".*liveplanet.*"
+regex LIFE.RU ".*life\.ru"
+regex RADIKAL ".*radikal.*"
+regex MAIL.RU ".*mail\.ru"
+regex LAPARFUMERIE ".*laparfumerie.*"
+!
+time-range 1C
+ periodic weekdays 10:00 to 18:00
+!
+time-range 24x7
+ periodic daily 0:00 to 23:59
+!
+time-range WSA-INET
+ periodic daily 7:00 to 22:59
+!
+time-range Working_hours
+ periodic daily 5:00 to 23:30
+!
+time-range guest
+ periodic daily 8:00 to 21:00
+!
+boot system disk0:/asa845-k8.bin
+ftp mode passive
+clock timezone MSK 2
+clock summer-time MSK/MDD recurring last Sun Mar 2:00 last Sun Oct 3:00
+dns domain-lookup inside
+dns domain-lookup mgmt
+dns domain-lookup outside_2
+dns server-group DefaultDNS
+ name-server 192.168.120.50
+ name-server 192.168.120.51
+ domain-name nipbank.ru
+same-security-traffic permit inter-interface
+same-security-traffic permit intra-interface
+object network ISA
+ host 192.168.20.222
+object network Mail_ISA_COMKOR
+ host 62.117.66.75
+object network BIFIT
+ host 172.16.0.37
+object network BIFIT_OUT-COMCOR
+ host 62.117.66.78
+object network IP_WebCam_Manage
+ host 172.16.0.233
+object network ARMBANK
+ host 172.16.0.221
+object network obj-172.16.0.0
+ subnet 172.16.0.0 255.255.255.0
+object service HTTPS
+ service tcp destination eq https 
+object service 9091
+ service tcp destination eq 9091 
+object network private-net
+ subnet 192.168.120.0 255.255.255.0
+object service SMTP
+ service tcp destination eq smtp 
+object network Bnk-Lianozovo
+ host 192.168.32.2
+object network Bnk-Pushka
+ host 192.168.34.2
+object network Bnk-Savel
+ host 192.168.34.2
+object network SSLclient-Neapol
+ host 10.10.10.3
+object network Pos1-Neapol
+ host 10.10.10.9
+object network Pos2-Neapol
+ host 10.10.10.10
+object network Pos3-Neapol
+ host 10.10.10.11
+object network Pos1-Lianozovo
+ host 192.168.12.2
+object network Pos2-Lianozovo
+ host 192.168.12.3
+object network Pos1-Milya
+ host 192.168.13.2
+object network Pos2-Milya
+ host 192.168.13.3
+object network Pos1-Pushka
+ host 192.168.14.2
+object network Pos2-Pushka
+ host 192.168.14.3
+object network Pos1-Savel
+ host 192.168.15.2
+object network Pos2-Savel
+ host 192.168.15.3
+object network RRAS-pool
+ range 10.10.10.32 10.10.10.47
+object network Pos-TEST-pool
+ range 10.10.10.48 10.10.10.63
+object network RRAS-TRANSL
+ range 10.24.85.32 10.24.85.47
+object network Pos-TEST-TRANSL
+ range 10.24.85.48 10.24.85.63
+object network Pos-DEST-TRANSL
+ host 10.24.1.2
+object service 1515
+ service tcp destination eq 1515 
+object network GUEST-NET
+ subnet 192.168.2.0 255.255.255.0
+object network Bnk-Neapol
+ host 10.10.10.76
+object network Pos-Public-TRANSL
+ range 10.24.85.128 10.24.85.253
+object network Pos-DEST-Comcor
+ host 62.117.66.77
+object network Bnk-Lianozovo-TRANSL
+ host 10.24.85.71
+object network Bnk-Pushka-TRANSL
+ host 10.24.85.78
+object network Bnk-Savel-TRANSL
+ host 10.24.85.82
+object network SSLclient-Neapol-TRANSL
+ host 10.24.85.3
+object network Pos1-Neapol-TRANSL
+ host 10.24.85.9
+object network Pos2-Neapol-TRANSL
+ host 10.24.85.10
+object network Pos3-Neapol-TRANSL
+ host 10.24.85.11
+object network Pos1-Lianozovo-TRANSL
+ host 10.24.85.12
+object network Pos2-Lianozovo-TRANSL
+ host 10.24.85.13
+object network Pos1-Milya-TRANSL
+ host 10.24.85.14
+object network Pos2-Milya-TRANSL
+ host 10.24.85.15
+object network Pos1-Pushka-TRANSL
+ host 10.24.85.16
+object network Pos2-Pushka-TRANSL
+ host 10.24.85.17
+object network Pos1-Savel-TRANSL
+ host 10.24.85.18
+object network Pos2-Savel-TRANSL
+ host 10.24.85.19
+object network Bnk-Neapol-TRANSL
+ host 10.24.85.76
+object service 1313
+ service tcp destination eq 1313 
+object network Pos-DEST-Zebra
+ host 217.14.246.36
+object network Bnk-Topaz
+ host 81.195.222.202
+object service 10556
+ service tcp destination eq 10556 
+object network MGMT-NET
+ range 172.16.0.2 172.16.0.254
+object network ADMIN-VPN-POOL
+ subnet 172.16.255.0 255.255.255.0
+object network Bnk-Mos
+ host 195.91.131.58
+object network Bnk-Mos-TRANSL
+ host 10.24.85.72
+object service 10557
+ service tcp destination eq 10557 
+object network Pos-DEST-TRANSL-test
+ host 10.24.1.1
+object service 10555
+ service tcp destination eq 10555 
+object network Lianozovo
+ subnet 192.168.129.0 255.255.255.0
+object network Bnk-Fresh
+ host 62.122.100.178
+object network Bnk-Fresh-TRANSL
+ host 10.24.85.75
+object service 10559
+ service tcp destination eq 10559 
+object network Bnk-Dina
+ host 109.188.92.43
+object network Bnk-Dina-TRANSL
+ host 10.24.85.74
+object service 10558
+ service tcp destination eq 10558 
+object network BNK-DEST-TRANSL
+ host 10.24.1.4
+object network WS-Monit
+ host 10.10.10.80
+object network WS-Monit-TRANSL
+ host 10.24.85.80
+object network 10.24.1.10
+ host 10.24.1.10
+object network 10.24.1.12
+ host 10.24.1.12
+object service 1630
+ service tcp destination eq 1630 
+object service 443
+ service tcp destination eq https 
+object service 7779
+ service tcp destination eq 7779 
+object network 172.16.0.111
+ host 172.16.0.111
+object network 172.16.0.10
+ host 172.16.0.10
+object service 7005
+ service tcp destination eq 7005 
+object network WS-Monit1-TRANSL
+ host 10.24.85.81
+object network Ws-Monit1
+ host 10.10.10.81
+object network WS-Monit1
+ host 10.10.10.81
+object service 222
+ service tcp destination eq 222 
+object service SSH
+ service tcp destination eq ssh 
+object network TEST
+object network EXCHANGE
+ host 192.168.120.25
+object service 777
+ service tcp destination eq 777 
+object service HTTP
+ service tcp destination eq www 
+object network Dop-Lianozovo
+ subnet 192.168.129.0 255.255.255.0
+object network 23-NET
+ subnet 192.168.23.0 255.255.255.0
+object network 24-NET
+ subnet 192.168.24.0 255.255.255.0
+object network 43-NET
+ subnet 192.168.43.0 255.255.255.0
+object network 44-NET
+ subnet 192.168.44.0 255.255.255.0
+object network 45-NET
+ subnet 192.168.45.0 255.255.255.0
+object network 46-NET
+ subnet 192.168.46.0 255.255.255.0
+object network 47-NET
+ subnet 192.168.47.0 255.255.255.0
+object network 70-NET
+ subnet 192.168.70.0 255.255.255.0
+object network 128-NET
+ subnet 192.168.128.0 255.255.255.0
+object network 129-NET
+ subnet 192.168.129.0 255.255.255.0
+object network 130-NET
+ subnet 192.168.130.0 255.255.255.0
+object network 131-NET
+ subnet 192.168.131.0 255.255.255.0
+object network 140-NET
+ subnet 192.168.140.0 255.255.255.0
+object service RDP
+ service tcp destination eq 3389 
+object network VIRT-Monit
+ host 10.10.10.82
+object network VIRT-Monit-TRANSL
+ host 10.24.85.82
+object service 10539
+ service tcp destination eq 10539 
+object network VIRT-Monit2
+ host 10.10.10.83
+object network VIRT-Monit2-TRANSL
+ host 10.24.85.86
+object network LAN-Neapol-Ohrana
+ subnet 192.168.140.0 255.255.255.0
+object network LAN-Neapol-Inkassat
+ subnet 192.168.141.0 255.255.255.0
+object network LAN-Neapol-Voditeli
+ subnet 192.168.142.0 255.255.255.0
+object network LAN-Neapol-Oper
+ subnet 192.168.143.0 255.255.255.0
+object network LAN-Neapol-Kass
+ subnet 192.168.144.0 255.255.255.0
+object network LAN-Neapol-Kredit
+ subnet 192.168.150.0 255.255.255.0
+object network LAN-Neapol-Valut
+ subnet 192.168.151.0 255.255.255.0
+object network LAN-Neapol-Rozn
+ subnet 192.168.152.0 255.255.255.0
+object network LAN-Neapol-Scheta
+ subnet 192.168.153.0 255.255.255.0
+object network LAN-Neapol-Exec
+ subnet 192.168.160.0 255.255.255.0
+object network LAN-Neapol-Bukh
+ subnet 192.168.161.0 255.255.255.0
+object network LAN-Neapol-Law
+ subnet 192.168.162.0 255.255.255.0
+object network LAN-Neapol-Finmonitor
+ subnet 192.168.163.0 255.255.255.0
+object network LAN-Neapol-Uchet
+ subnet 192.168.164.0 255.255.255.0
+object network LAN-Neapol-IT
+ subnet 192.168.170.0 255.255.255.0
+object network LAN-Neapol-Finoper
+ subnet 192.168.171.0 255.255.255.0
+object network LAN-Neapol-VIP
+ subnet 192.168.180.0 255.255.255.0
+object network Bnk-Rum
+ host 192.168.36.6
+object network Bnk-Rum-Prohd-TRANSL
+ host 10.24.85.83
+object service 10531
+ service tcp destination eq 10531 
+object network Bnk-Rum2
+ host 192.168.36.7
+object network Bnk-Rum-Stolov-TRANSL
+ host 10.24.85.84
+object network 192.168.107.0
+ subnet 192.168.107.0 255.255.255.0
+ description 192.168.107.0
+object network proxy-net
+ subnet 192.168.107.0 255.255.255.0
+object network proxy-inet
+ subnet 192.168.107.0 255.255.255.0
+object network 192.168.107.2
+ host 192.168.107.2
+object network Proxy-server
+ host 192.168.107.2
+object network Bisquit_120.6
+ host 192.168.120.6
+ description Bisquit_120.6
+object service Bisquit_444
+ service tcp destination eq 444 
+ description 444
+object network 192.168.120.15
+ host 192.168.120.15
+ description 192.168.120.15
+object network 62.117.66.79
+ host 62.117.66.79
+ description 62.117.66.79
+object network VipNET-PUB
+ subnet 192.168.15.0 255.255.255.0
+ description VipNET-PUB
+object network VipNET-Private
+ subnet 192.168.60.0 255.255.255.0
+ description VipNET-Private
+object network 192.168.15.0
+ subnet 192.168.15.0 255.255.255.0
+ description 192.168.15.0
+object network Bisquit_120.2
+ host 192.168.120.2
+ description Bisquit_120.2
+object network prov2_87.245.172.98
+ host 87.245.172.98
+ description prov2_87.245.172.98
+object network 62.117.66.76
+ host 62.117.66.76
+ description 62.117.66.76
+object network Brusnik_Temporary
+ host 192.168.120.124
+object network QBis
+ host 172.16.0.38
+object service 778
+ service tcp destination eq 778 
+ description 778
+object network 48-NET
+object network Pos1-UG
+ host 192.168.16.2
+object network Pos2-UG
+ host 192.168.16.3
+object network Pos1-UG-TRANSL
+ host 10.24.85.20
+object network Pos2-UG-TRANSL
+ host 10.24.85.21
+object network Bnk-UG
+ host 192.168.37.2
+object network Bnk-UG-TRANSL
+ host 10.24.85.73
+object network 132-NET
+ subnet 192.168.132.0 255.255.255.0
+object network ATS-Samsung
+ host 192.168.132.4
+ description ATS-Samsung
+object network Video_UG
+ subnet 192.168.145.0 255.255.255.0
+ description Video_UG
+object network 192.168.145.2
+ host 192.168.145.2
+ description 192.168.145.2
+object network 145
+ subnet 192.168.145.0 255.255.255.0
+object network Bnk-ALTUF
+ host 213.87.11.245
+object network Bnk-ALTUF-TRANSL
+ host 10.24.85.85
+object service 10530
+ service tcp destination eq 10530 
+object service 880
+ service tcp destination eq 880 
+object network NETWORK_OBJ_172.16.255.0_24
+ subnet 172.16.255.0 255.255.255.0
+object network Crypto-WEB
+ host 193.37.157.10
+object network Reporting_MGTU
+ host 192.168.120.23
+object network Rex400_VPN_Server
+ host 195.96.172.205
+object service Rex400_VPN_TCP22522
+ service tcp destination eq 22522 
+object service 10529
+ service tcp destination eq 10529 
+ description 10529
+object network Bnk-RumCash1
+ host 192.168.36.14
+object network Bnk-RumCash1-TRANSL
+ host 10.24.85.86
+object network RX306
+ host 192.168.120.6
+object network AUDIT
+ subnet 192.168.172.0 255.255.255.0
+ description AUDIT
+object network 172.16.0.47
+ host 172.16.0.47
+ description 172.16.0.47
+object service 4000
+ service tcp destination eq 4000 
+ description 4000
+object service 4001
+ service tcp destination eq 4000 
+ description 4001
+object network Bnk-MOS2
+ host 195.208.45.250
+object network Bnk-MOS2-TRANSL
+ host 10.24.85.87
+object service 2221
+ service tcp source range 1 65535 
+ description 2221
+object service CONTACT-PORTS
+ service tcp destination eq https 
+object network Opefire
+ host 192.168.120.29
+object network Reporting
+ host 192.168.120.23
+object network vpn.rex400.ru
+ host 195.96.172.205
+object network mail.rex400.ru
+ host 195.90.161.198
+object network reserve.rex400.ru
+ host 83.242.166.222
+object network KART-STD-NOVOSIB
+ subnet 10.255.0.0 255.255.255.0
+ description KART-STD
+object network KART-STD-LOCAL
+ subnet 10.255.168.0 255.255.255.0
+ description KART-STD-LOCAL
+object network ZDO-Local
+ host 10.10.10.222
+object network PROD-EXCH-NOVOSIB-TRANSL
+ host 10.255.168.2
+ description NOVOSIB-TRANSL_EXCH
+object network EXCH-NOVOSIB
+ host 10.255.0.12
+ description EXCH-NOVOSIB
+object network POS-ATM-NOVOSIB-Transl
+ host 10.255.0.13
+ description POS-ATM
+object network PROD-WEB-NOVOSIB
+ host 10.255.0.20
+ description PROD-WEB
+object service EXCH-NOVOSIB-11021
+ service tcp destination eq 11021 
+ description EXCH-NOVOSIB-11021
+object service POS-ATM-Service
+ service tcp destination eq 3171 
+ description POS-ATM-Service
+object service WEB-NOVOSIB-7777
+ service tcp destination eq 7777 
+ description WEB-NOVOSIB-Service
+object service EXCH-NOVOSIB-range
+ service tcp destination range 11100 11600 
+ description EXCH-NOVOSIB-range
+object network POS-ATM-TRANSL
+ host 10.255.168.3
+ description POS-ATM-TRANSL
+object network PROD-WEB-NOVOSIB-TRANSL
+ host 10.255.168.20
+ description PROD-WEB-NOVOSIB-TRANSL
+object network CB-OTCHET-LOCAL
+ subnet 172.20.24.96 255.255.255.240
+ description CB-OTCHET-LOCAL
+object network CB-19
+ subnet 192.168.19.0 255.255.255.0
+ description CB-19
+object network CB-21
+ subnet 192.168.21.0 255.255.255.0
+ description CB-21
+object network CB-22
+ subnet 192.168.22.0 255.255.255.0
+ description CB-22
+object network CB-VM
+ host 192.168.181.2
+ description CB-VM
+object network CB-VM-TRANSL
+ host 172.20.24.98
+ description CB-VM-TRANSL
+object network 192.168.181.0
+ subnet 192.168.181.0 255.255.255.0
+ description 192.168.181.0
+object network 192.168.182.0
+ subnet 192.168.182.0 255.255.255.0
+object network Mail
+ host 192.168.120.25
+object network ASA-test-UG
+ host 192.168.36.9
+ description ASA-test-UG
+object network Sigalizac
+ host 192.168.36.12
+ description Sigalizac
+object network ASA-uG-TRST
+ host 192.168.36.9
+object network Sigalizaciya-Rumyancevo
+ host 192.168.128.112
+ description Sigalizaciya
+object network PROD-WEB-LOCAL
+ host 10.10.10.223
+ description PROD-WEB-NVSB
+object network POS-ATM-LOCAL_224
+ host 10.10.10.224
+ description POS-ATM-LOCAL
+object network ADS01
+ host 192.168.120.34
+object network ADS1
+ host 192.168.120.36
+object network ADS2
+ host 192.168.120.37
+object network Piter_Bis
+ host 46.47.247.194
+object service 55777
+ service tcp destination eq 55777 
+object service 55777udp
+ service udp destination eq 55777 
+object network host_192.168.15.2
+ host 192.168.15.2
+object network VIPNET
+ host 192.168.15.2
+object network VIPNET-WAN
+ host 109.207.2.12
+object network 192.168.15.2
+ host 192.168.15.2
+object network 109.207.2.12
+ host 109.207.2.12
+object network test_agent
+ host 192.168.120.120
+object network WSA
+ host 192.168.20.21
+object network ASA-local
+ subnet 192.168.20.0 255.255.255.0
+object network wsa
+ host 192.168.20.21
+object network 132
+ subnet 192.168.132.0 255.255.255.0
+ description 132-NET
+object network SWIFT01
+ host 192.168.120.60
+object network 51-NET
+ subnet 192.168.51.0 255.255.255.0
+ description DOORS
+object network DOORS-128.114
+ host 192.168.128.114
+object network 109.72.129.48
+ host 109.72.129.48
+object network 173.194.71.138
+ host 173.194.71.138
+object network 173.194.71.100
+ host 173.194.71.100
+object network 109.72.129.11
+ host 109.72.129.11
+object network private-net-rez
+ subnet 192.168.120.0 255.255.255.0
+object network obj-172.16.0.0-rez
+ subnet 172.16.0.0 255.255.255.0
+object network wsa-rez
+ host 192.168.20.21
+object network 192.168.145.2-rez
+ host 192.168.145.2
+object network 23-NET-rez
+ subnet 192.168.23.0 255.255.255.0
+object network 24-NET-rez
+ subnet 192.168.24.0 255.255.255.0
+object network 43-NET-rez
+ subnet 192.168.43.0 255.255.255.0
+object network 44-NET-rez
+ subnet 192.168.44.0 255.255.255.0
+object network ISA-rez
+ host 192.168.20.222
+object network 45-NET-rez
+ subnet 192.168.45.0 255.255.255.0
+object network 128-NET-rez
+ subnet 192.168.128.0 255.255.255.0
+object network 46-NET-rez
+ subnet 192.168.46.0 255.255.255.0
+object network 47-NET-rez
+ subnet 192.168.47.0 255.255.255.0
+object network 70-NET-rez
+ subnet 192.168.70.0 255.255.255.0
+object network 129-NET-rez
+ subnet 192.168.129.0 255.255.255.0
+object network 130-NET-rez
+ subnet 192.168.130.0 255.255.255.0
+object network 131-NET-rez
+ subnet 192.168.131.0 255.255.255.0
+object network 132-rez
+ subnet 192.168.132.0 255.255.255.0
+object network 140-NET-rez
+ subnet 192.168.140.0 255.255.255.0
+object network POS-ATM-LOCAL-TEST
+ host 10.10.10.225
+ description POS-ATM-LOCAL-TEST
+object network POS-ATM-LOCAL-POOL
+ range 10.10.10.200 10.10.10.215
+ description POS-ATM-POOL
+object network Pos-PUBLIC-Transl-KARTSTD
+ range 10.255.168.100 10.255.168.225
+ description Pos-PUBLIC-Transl-KARTSTD
+object service 3171
+ service tcp destination eq 3171 
+ description 3171
+object network BIFIT_OUT-ZEBRA
+ host 217.14.246.35
+ description BIFIT_OUT-ZEBRA
+object network GW-KARTSTD-Cisco-isr
+ host 10.255.168.21
+object network GUEST
+ subnet 192.168.2.0 255.255.255.0
+ description GUEST
+object network Bnk-Neapol-KART-STD
+ host 10.10.10.77
+ description Bnk-Neapol-KART-STD
+object network Video-192.168.148.2
+ host 192.168.148.2
+ description 192.168.148.2
+object service Video-9786
+ service tcp destination eq 9786 
+ description 9786
+object service 8080
+ service tcp destination eq 8080 
+ description 8080
+object service Radmin-TCP
+ service tcp destination eq 4899 
+ description Radmin-TCP
+object service 7777
+ service tcp destination eq 7777 
+ description 7777
+object service 4999
+ service tcp destination eq 4999 
+ description RADM-4999
+object network PROD-WEB-LOCAL_226
+ host 10.10.10.226
+ description PROD-WEB-LOCAL_226
+object network Esa
+ host 192.168.20.25
+object network MISHA_6_etag
+ host 192.168.2.11
+object service GOROD_1494
+ service tcp destination eq citrix-ica 
+ description GOROD_1494
+object service GOROD_2891
+ service tcp destination eq 2891 
+ description GOROD_2891
+object service GOROD_udp_1494
+ service udp destination eq 1494 
+ description GOROD_udp_1494
+object service GOROD_udp_2891
+ service udp destination eq 2891 
+ description GOROD_udp_2891
+object service GOROD_udp_2981
+ service tcp destination eq 2891 
+ description GOROD_udp_2981
+object service 8443
+ service tcp destination eq 8443 
+object service 465
+ service tcp destination eq 465 
+ description 465
+object service 993
+ service tcp destination eq 993 
+ description 993
+object service guest-mail
+ service tcp destination eq 465 
+object service guest-mail-993
+ service tcp destination eq 993 
+object network Faktura
+ host 172.16.0.43
+object network PROD-WEB-LOCAL_227
+ host 10.10.10.227
+ description PROD-WEB-LOCAL_227
+object network PROD-FILE-EXCH
+ host 10.255.168.2
+ description PROD-FILE-EXCH
+object service 11021
+ service tcp destination eq 11021 
+ description 11021
+object service 3789
+ service tcp destination eq 3789 
+ description 3789
+object network 133-NET
+ subnet 192.168.133.0 255.255.255.0
+ description 133-NET
+object network 133
+ subnet 192.168.133.0 255.255.255.0
+ description 133-NET
+object network 192.168.133.0
+ subnet 192.168.133.0 255.255.255.0
+ description 192.168.133.0
+object network 133-rez
+ subnet 192.168.133.0 255.255.255.0
+ description 133-rez
+object network 133-NET-rez
+ subnet 192.168.133.0 255.255.255.0
+object network Esa_26
+ host 192.168.20.26
+object network QBis-OUT
+ host 62.117.66.74
+ description DBO-QBis
+object network MDaemon
+ host 192.168.20.27
+ description MDaemon
+object network MDaemon1
+ host 192.168.20.27
+ description MDaemon
+object service 42669
+ service tcp source eq 42669 destination eq 42669 
+ description 42669
+object service 67
+ service udp source eq bootps destination eq bootps 
+ description 67
+object service 123
+ service udp source eq ntp destination eq ntp 
+ description 123
+object service 2121
+ service tcp source eq 2121 destination eq 2121 
+ description 2121
+object service 4040
+ service tcp source eq 4040 destination eq 4040 
+ description 4040
+object service 333
+ service tcp destination eq 333 
+ description 333
+object service 5900
+ service tcp destination eq 5900 
+ description 5900
+object service 6080
+ service tcp destination eq 6080 
+ description 6080
+object service 5802
+ service tcp destination eq 5802 
+ description 5802
+object network WIFI-ZONE
+ host 172.16.0.212
+object service 20
+ service tcp destination eq ftp-data 
+ description 20
+object service 21
+ service tcp destination eq ftp 
+object network BRIDGE_KBR
+ host 192.168.120.33
+object network Site
+ host 172.16.0.234
+object service 7788
+ service tcp destination eq 7788 
+ description 7788
+object service 888
+ service tcp destination eq 888 
+ description 888
+object service 111
+ service tcp destination eq sunrpc 
+ description 111
+object service 555
+ service tcp destination eq 555 
+ description 555
+object network test-transl
+ host 172.16.0.235
+ description test-transl
+object network ADS3
+ host 192.168.120.40
+ description ADS3
+object network Stas
+ host 188.244.35.36
+ description Stas
+object service 3333
+ service tcp source eq 3333 
+object network nw01
+ host 192.168.120.41
+object network Matunova
+ host 192.168.120.173
+ description Matunova
+object network Stas_local
+ host 192.168.120.119
+object network WSUS
+ host 192.168.120.32
+object network dc-01
+ host 192.168.120.40
+object service imaps
+ service tcp destination eq 993 
+ description imaps
+object service pop3s
+ service tcp destination eq 995 
+ description pop3s
+object service smtps
+ service tcp destination eq 587 
+ description smtps
+object network DC01
+ host 192.168.120.50
+ description DC01
+object network DC02
+ host 192.168.120.51
+ description DC02
+object service RDP-334
+ service tcp destination eq 334 
+ description RDP-334
+object service RDP-335
+ service tcp destination eq 335 
+ description RDP-335
+object network test2
+ host 192.168.120.142
+ description test2
+object network DATA-Office-SITE
+ subnet 192.168.77.0 255.255.255.0
+object network CONTACT-SRV
+ host 192.168.120.18
+object network NOUT-Ubnt
+ host 172.16.0.253
+object service 4004
+ service tcp destination eq 4004 
+ description 4004
+object network QBis-test
+ host 172.16.0.40
+ description QBis-test
+object service 779
+ service tcp destination eq 779 
+ description 779
+object service 881
+ service tcp destination eq 881 
+ description 881
+object network 77-NET
+ subnet 192.168.77.0 255.255.255.0
+object network 77-NET-rez
+ subnet 192.168.77.0 255.255.255.0
+object network LABS
+ subnet 192.168.90.0 255.255.255.0
+object network Signal_PAVELEC
+ host 192.168.133.4
+object network EXCHANGE2010
+ host 192.168.120.19
+object network 172.16.0.41
+ host 172.16.0.41
+ description 172.16.0.41
+object service 2222
+ service tcp destination eq 2222 
+ description 2222
+object network SSL-BIIS
+ host 10.10.10.220
+ description 10.10.10.220
+object service 4005
+ service tcp destination eq 4005 
+ description 4005
+object network SSL-TRANSL-NOVOSIB
+ host 10.255.168.1
+ description SSL-TRANSL-NOVOSIB
+object network FreeNAS
+ host 192.168.120.26
+object service webex_1270
+ service tcp destination eq 1270 
+ description webex_1270
+object service webex_5101
+ service tcp destination eq 5101 
+ description webex_5101
+object service webex_53
+ service tcp destination eq domain 
+ description webex_53
+object service webex_7500
+ service udp destination eq 7500 
+ description webex_7500
+object service webex_7501
+ service udp destination eq 7501 
+ description webex_7501
+object service webex_8554
+ service tcp destination eq 8554 
+ description webex_8554
+object service webex_9000
+ service udp destination eq 9000 
+ description webex_9000
+object service webex_9001
+ service udp destination eq 9001 
+ description webex_9001
+object service webex_u_1270
+ service udp destination eq 1270 
+ description webex_u_1270
+object service webex_u_5101
+ service udp destination eq 5101 
+ description webex_u_5101
+object service webex_u_53
+ service udp destination eq domain 
+ description webex_u_53
+object network SWIFTBRIDGE
+ host 192.168.120.28
+object service 4023
+ service tcp destination eq 4023 
+ description 4023
+object network Kavadmin
+ host 192.168.120.197
+object network 62.128.100.81
+ host 62.128.100.81
+ description 62.128.100.81
+object network 62.76.24.147
+ host 62.76.24.147
+ description 62.76.24.147
+object network 62.76.24.153
+ host 62.76.24.153
+ description 62.76.24.153
+object network 93.159.230.19
+ host 93.159.230.19
+ description 93.159.230.19
+object network 93.191.13.100
+ host 93.191.13.100
+ description 93.191.13.100
+object network 93.191.13.103
+ host 93.191.13.103
+ description 93.191.13.103
+object network 95.167.139.6
+ host 95.167.139.6
+ description 95.167.139.6
+object network LAN-1C
+ subnet 192.168.165.0 255.255.255.0
+object network NETWORK_OBJ_172.16.255.224_27
+ subnet 172.16.255.224 255.255.255.224
+object network 1C-POOL
+ subnet 172.16.1.0 255.255.255.0
+object network 165
+ subnet 192.168.165.0 255.255.255.0
+object network 83.69.203.58
+ host 83.69.203.58
+object network 78-NET
+ subnet 192.168.78.0 255.255.255.0
+object network Signal_Sretenka
+ host 192.168.131.44
+ description Signal_Sretenka
+object network 135
+ subnet 192.168.135.0 255.255.255.0
+object network 135_6_etag
+ subnet 192.168.135.0 255.255.255.0
+ description 135_6_etag
+object service 4444
+ service tcp source eq 4444 destination eq 4444 
+ description 4444
+object network PostgreSQL
+ host 192.168.120.27
+object network ZOL-Korona-Local
+ subnet 10.250.133.0 255.255.255.0
+ description ZOL-Korona-Local
+object network ZOL-Korona-Novosib
+ subnet 10.250.0.0 255.255.255.0
+ description ZOL-Korona-Novosib
+object network CUP-Local
+ host 10.10.12.12
+ description CUP
+object network CUP-Zol-Korona
+ host 10.250.133.10
+ description CUP-Zol-Korona
+object network BCL-Test
+ host 172.16.0.57
+ description BCL-Test
+object service 999
+ service tcp destination eq 999 
+ description 999
+object service 997
+ service tcp destination eq 997 
+ description 997
+object service 998
+ service tcp destination eq 998 
+ description 998
+object service 3788
+ service tcp destination eq 3788 
+ description 3788
+object network Signal_Savel
+ host 192.168.128.4
+ description Signal_Savel
+object network Bnk-Rum-Stolov
+ host 194.6.221.141
+ description Bnk-Rum-Stolov
+object service 10600
+ service tcp source eq 10600 
+ description 10600
+object network MONOBLOCK
+ host 192.168.83.3
+ description MONOBLOCK
+object network 83-NET
+ subnet 192.168.83.0 255.255.255.0
+ description MONOBLOCK
+object service TS_VMS
+ service tcp destination eq 8888 
+ description 8888
+object service 2211
+ service tcp destination eq 2211 
+object network NNTPserver
+ host 172.16.0.40
+ description NNTPserver
+object service nntp
+ service tcp destination eq 7171 
+ description nntp
+object-group network POS-TERM-NETS
+ network-object 10.10.10.0 255.255.255.0
+ network-object 192.168.12.0 255.255.255.0
+ network-object 192.168.13.0 255.255.255.0
+ network-object 192.168.14.0 255.255.255.0
+ network-object 192.168.15.0 255.255.255.0
+ network-object 192.168.32.0 255.255.255.0
+ network-object 192.168.33.0 255.255.255.0
+ network-object 192.168.34.0 255.255.255.0
+ network-object 192.168.35.0 255.255.255.0
+ network-object 192.168.36.0 255.255.255.0
+ network-object 192.168.16.0 255.255.255.0
+ network-object 192.168.37.0 255.255.255.0
+ network-object 192.168.39.0 255.255.255.0
+ network-object 192.168.19.0 255.255.255.0
+object-group network URALSIB-DEST
+ network-object host 10.24.1.2
+ network-object host 10.24.1.4
+ network-object host 10.24.1.3
+ network-object host 10.24.1.11
+ network-object host 10.24.1.9
+object-group service URALSIB-SERVICES
+ service-object tcp destination eq 10556 
+ service-object tcp destination eq https 
+ service-object tcp destination eq 1515 
+ service-object icmp 
+ service-object tcp destination eq 1313 
+ service-object object 10539 
+ service-object object 10531 
+ service-object object 10559 
+ service-object object 10529 
+object-group network NIP-NETS
+ network-object 10.0.0.0 255.0.0.0
+ network-object 172.16.0.0 255.255.0.0
+ network-object 192.168.0.0 255.255.0.0
+object-group network Ural-Monitoring
+ network-object host 10.24.1.13
+ network-object object 10.24.1.10
+ network-object object 10.24.1.12
+object-group network DM_INLINE_NETWORK_1
+ group-object URALSIB-DEST
+ group-object Ural-Monitoring
+object-group service Monitoring
+ service-object object 1630 
+ service-object object 443 
+ service-object object 7779 
+ service-object object 7005 
+object-group user HTTP-FULL-USERS
+ user NIPBANK\zonova
+ user NIPBANK\zavyalva
+ user NIPBANK\wasileva
+ user NIPBANK\VorobyevS
+ user NIPBANK\varvarin
+ user NIPBANK\uvarova
+ user NIPBANK\Ushakova
+ user NIPBANK\tvorogov
+ user NIPBANK\suhova
+ user NIPBANK\stolarov
+ user NIPBANK\stenina
+ user NIPBANK\solodovn
+ user NIPBANK\sokolska
+ user NIPBANK\soboleva
+ user NIPBANK\slesarev
+ user NIPBANK\skorohod
+ user NIPBANK\sherbakova
+ user NIPBANK\shar
+ user NIPBANK\shadskay
+ user NIPBANK\sakova
+ user NIPBANK\reznik
+ user NIPBANK\raldugina
+ user NIPBANK\rahmanov
+ user NIPBANK\pupko
+ user NIPBANK\postmaster
+ user NIPBANK\petrenko
+ user NIPBANK\ostapenko
+ user NIPBANK\orlovaim
+ user NIPBANK\NVStep
+ user NIPBANK\nazarova
+ user NIPBANK\naydena
+ user NIPBANK\murzina
+ user NIPBANK\motorov2000
+ user NIPBANK\motorov
+ user NIPBANK\mironova
+ user NIPBANK\minina
+ user NIPBANK\merkulva
+ user NIPBANK\maslov
+ user NIPBANK\mashkina
+ user NIPBANK\martynova
+ user NIPBANK\mahova
+ user NIPBANK\lucenko
+ user NIPBANK\lomachuk
+ user NIPBANK\lobanova
+ user NIPBANK\lipkin
+ user NIPBANK\lapova
+ user NIPBANK\lapitsky
+ user NIPBANK\kuznecov
+ user NIPBANK\kudrash
+ user NIPBANK\Kreytor
+ user NIPBANK\kovalev2
+ user NIPBANK\kopylova
+ user NIPBANK\konstana
+ user NIPBANK\kondrash
+ user NIPBANK\kirsanov
+ user NIPBANK\kartasho
+ user NIPBANK\karikh
+ user NIPBANK\kanata
+ user NIPBANK\jagrova
+ user NIPBANK\grishina
+ user NIPBANK\gorytska
+ user NIPBANK\goryachk
+ user NIPBANK\glushenk
+ user NIPBANK\gateway
+ user NIPBANK\fomicev
+ user NIPBANK\firsova
+ user NIPBANK\filippov
+ user NIPBANK\efimich
+ user NIPBANK\efimenko
+ user NIPBANK\dulov
+ user NIPBANK\dorohina
+ user NIPBANK\danilin
+ user NIPBANK\cugunova
+ user NIPBANK\chvanov
+ user NIPBANK\chernav
+ user NIPBANK\chekurov
+ user NIPBANK\brusnik
+ user NIPBANK\borzykld
+ user NIPBANK\Balykova
+ user NIPBANK\baklagin
+ user NIPBANK\avtobank
+ user NIPBANK\audit
+ user NIPBANK\arhipova
+ user NIPBANK\anishnko
+ user NIPBANK\alekseev
+ user NIPBANK\aksenova
+ user NIPBANK\akinfiev
+ user NIPBANK\afanas
+ user NIPBANK\wsuser
+ user NIPBANK\demidova
+ user NIPBANK\bizikova
+ user NIPBANK\zagaynova
+ user NIPBANK\suslina
+ user NIPBANK\pospelova
+ user NIPBANK\repeshuk
+ user NIPBANK\chirikova
+ user NIPBANK\rodionova
+ user NIPBANK\lobanovat
+ user NIPBANK\fomina
+ user NIPBANK\plugina
+ user NIPBANK\silkin
+ user NIPBANK\jelobano
+ user NIPBANK\loboda
+ user NIPBANK\lukanina
+ user NIPBANK\kondrashova
+ user NIPBANK\kozlova
+ user NIPBANK\skrinik
+ user NIPBANK\provarenova
+ user NIPBANK\volkov
+ user NIPBANK\ilina
+ user NIPBANK\petryaikin
+ user NIPBANK\knyazev
+ user NIPBANK\audit1
+ user NIPBANK\volchkov
+ user NIPBANK\cygankova
+ user NIPBANK\umironov
+ user NIPBANK\balans2w
+ user NIPBANK\SQLDB_Admin
+ user NIPBANK\shamorgina
+ user NIPBANK\grekova
+ user NIPBANK\test1
+ user NIPBANK\test2
+ user NIPBANK\lucnikov
+ user NIPBANK\tihonova
+ user NIPBANK\mciadmin
+ user NIPBANK\chvanovi
+ user NIPBANK\jitsi
+ user NIPBANK\svetlova
+ user NIPBANK\jelezina
+ user NIPBANK\efimenkoel
+ user NIPBANK\tumasyan
+ user NIPBANK\chernyaev
+ user NIPBANK\kuznecni
+ user NIPBANK\zagaynov
+ user NIPBANK\eliseeva
+ user NIPBANK\boycova
+ user NIPBANK\evreinova
+ user NIPBANK\makarval
+ user NIPBANK\grigekat
+ user NIPBANK\reuters
+ user NIPBANK\hodos
+ user NIPBANK\kavadmin
+ user NIPBANK\apalkova
+ user NIPBANK\kosyreva
+ user NIPBANK\doroshen
+ user NIPBANK\polishuk
+ user NIPBANK\kippa
+ user NIPBANK\airih
+ user NIPBANK\kudryavceva
+ user NIPBANK\nevedrov
+ user NIPBANK\molokano
+ user NIPBANK\terehova
+ user NIPBANK\kuznecea
+ user NIPBANK\nikonora
+ user NIPBANK\zukova
+ user NIPBANK\sergeev
+ user NIPBANK\molokanova
+ user NIPBANK\spiridon
+ user NIPBANK\lomova
+ user NIPBANK\belyakov
+ user NIPBANK\kuksova
+ user NIPBANK\popovich
+ user NIPBANK\plesakov
+ user NIPBANK\galahov
+ user NIPBANK\mihaylva
+ user NIPBANK\baranova
+ user NIPBANK\grinenko
+ user NIPBANK\kadimova
+ user NIPBANK\potemkin
+ user NIPBANK\travkin
+ user NIPBANK\sidyakin
+ user NIPBANK\ivanko
+ user NIPBANK\lavrentyeva
+ user NIPBANK\lovkova
+ user NIPBANK\gusarova
+ user NIPBANK\sharaban
+ user NIPBANK\manina
+ user NIPBANK\rakova
+ user NIPBANK\halina
+ user NIPBANK\lamonova
+ user NIPBANK\krirucko
+ user NIPBANK\karamlva
+ user NIPBANK\skovpen
+ user NIPBANK\lavrent
+ user NIPBANK\pantel
+ user NIPBANK\Sharahov
+ user NIPBANK\popova
+ user NIPBANK\freyberg
+ user NIPBANK\lomakina
+ user NIPBANK\yaroshen
+ user NIPBANK\bilyalov
+ user NIPBANK\silakov
+ user NIPBANK\maltsev
+object-group user HTTP-RESTRICT-USERS
+ user NIPBANK\zukova
+ user NIPBANK\zavyalva
+ user NIPBANK\vorobeva
+ user NIPBANK\tvorogov
+ user NIPBANK\svetlova
+ user NIPBANK\Sukneva
+ user NIPBANK\solodovn
+ user NIPBANK\soboleva
+ user NIPBANK\skorohod
+ user NIPBANK\shmeleva
+ user NIPBANK\shar
+ user NIPBANK\serova
+ user NIPBANK\sarycheva
+ user NIPBANK\reznik
+ user NIPBANK\pushkareva
+ user NIPBANK\pupko
+ user NIPBANK\mironova
+ user NIPBANK\merkulva
+ user NIPBANK\melenevs
+ user NIPBANK\maslov
+ user NIPBANK\mashkina
+ user NIPBANK\mahova
+ user NIPBANK\lukanina
+ user NIPBANK\lobanova
+ user NIPBANK\kopylova
+ user NIPBANK\konstana
+ user NIPBANK\kogut
+ user NIPBANK\jelobano
+ user NIPBANK\iliyna
+ user NIPBANK\grishgu
+ user NIPBANK\gribkova
+ user NIPBANK\glushkov
+ user NIPBANK\frolova
+ user NIPBANK\fomichev
+ user NIPBANK\FileMgr
+ user NIPBANK\egorov
+ user NIPBANK\cigankov
+ user NIPBANK\cerkesov
+ user NIPBANK\brusnik
+ user NIPBANK\borzov
+ user NIPBANK\berezkina
+ user NIPBANK\Balykova
+ user NIPBANK\balans2w
+ user NIPBANK\artemova
+ user NIPBANK\arhipova
+ user NIPBANK\apollonov
+ user NIPBANK\anufriev
+ user NIPBANK\abramova
+ user NIPBANK\bizikova
+ user NIPBANK\stepanova
+ user NIPBANK\gusev
+ user NIPBANK\loboda
+ user NIPBANK\golubkova
+ user NIPBANK\pischalnikova
+ user NIPBANK\kuksova
+ user NIPBANK\Novikova
+ user NIPBANK\arkov
+ user NIPBANK\tarantova
+ user NIPBANK\maslyaeva
+ user NIPBANK\kudryavceva
+ user NIPBANK\safronov
+ user NIPBANK\cignkova
+ user NIPBANK\atlasova
+ user NIPBANK\andreeva
+ user NIPBANK\tihonova
+ user NIPBANK\sungurova
+object-group network INTERNAL-NETS
+ description ASA-local
+ network-object 192.168.23.0 255.255.255.0
+ network-object 192.168.24.0 255.255.255.0
+ network-object 192.168.33.0 255.255.255.0
+ network-object 192.168.34.0 255.255.255.0
+ network-object 192.168.70.0 255.255.255.0
+ network-object private-net 255.255.255.0
+ network-object Dopoff-Savel 255.255.255.0
+ network-object Dopoff-Lianozovo 255.255.255.240
+ network-object 192.168.130.0 255.255.255.0
+ network-object 192.168.131.0 255.255.255.0
+ network-object 192.168.140.0 255.255.255.0
+ network-object 192.168.141.0 255.255.255.0
+ network-object 192.168.142.0 255.255.255.0
+ network-object 192.168.143.0 255.255.255.0
+ network-object 192.168.144.0 255.255.255.0
+ network-object 192.168.150.0 255.255.255.0
+ network-object 192.168.151.0 255.255.255.0
+ network-object 192.168.152.0 255.255.255.0
+ network-object 192.168.153.0 255.255.255.0
+ network-object 192.168.160.0 255.255.255.0
+ network-object 192.168.161.0 255.255.255.0
+ network-object 192.168.162.0 255.255.255.0
+ network-object 192.168.163.0 255.255.255.0
+ network-object 192.168.164.0 255.255.255.0
+ network-object 192.168.170.0 255.255.255.0
+ network-object 192.168.171.0 255.255.255.0
+ network-object 192.168.180.0 255.255.255.0
+ network-object object 192.168.107.0
+ network-object 192.168.107.0 255.255.255.0
+ network-object object VipNET-PUB
+ network-object object VipNET-Private
+ network-object 192.168.132.0 255.255.255.0
+ network-object object AUDIT
+ network-object Dopoff-Lianozovo 255.255.255.0
+ network-object object Video-192.168.148.2
+ network-object 192.168.133.0 255.255.255.0
+ network-object object DATA-Office-SITE
+ network-object object 135
+object-group service TEST-HTTP-ACCESS
+ service-object tcp destination eq www 
+ service-object tcp destination eq https 
+ service-object tcp destination eq 4090 
+ service-object udp destination eq 4090 
+object-group service DNS
+ service-object tcp destination eq domain 
+ service-object udp destination eq domain 
+object-group network DNS-USERS
+ network-object host 192.168.120.36
+ network-object host 192.168.120.37
+ network-object host 192.168.120.79
+object-group service TIME
+ service-object tcp destination eq daytime 
+ service-object udp destination eq 13 
+ service-object udp destination eq ntp 
+object-group network TIME-USERS
+ network-object host 192.168.120.34
+ network-object host 192.168.120.35
+ network-object host 192.168.120.36
+ network-object host 192.168.120.37
+ network-object host 192.168.120.79
+object-group service MAIL
+ service-object tcp destination eq smtp 
+ service-object tcp destination eq 465 
+object-group network KASPERSKY-LABS
+ network-object host 80.239.197.100
+ network-object host 80.239.197.103
+ network-object host 93.191.13.100
+ network-object host 93.191.13.103
+ network-object host 80.239.174.47
+ network-object host 95.167.139.6
+ network-object host 83.229.173.3
+object-group network WINDOWSUPDATE
+ network-object host 64.4.11.37
+ network-object host 65.55.58.201
+object-group service HTTP+HTTPS
+ service-object tcp destination eq www 
+ service-object tcp destination eq https 
+object-group network CBR.RU
+ network-object host 212.40.192.49
+object-group network RX
+ network-object host 192.168.120.4
+ network-object host 192.168.120.2
+ network-object host 192.168.120.3
+ network-object object RX306
+object-group network RUSSLAVBANK.RU
+ network-object host 91.199.223.136
+object-group network PLAT-SYS-RAIFF
+ network-object host 193.28.44.148
+ network-object host Raffaizen
+ network-object host 193.28.44.146
+ network-object 195.238.72.0 255.255.254.0
+ network-object 193.28.44.0 255.255.255.0
+object-group user RAIFF-USERS
+ user NIPBANK\svetlova
+ user NIPBANK\pupko
+ user NIPBANK\kovalev2
+ user NIPBANK\kopylova
+ user NIPBANK\konstana
+ user NIPBANK\kanata
+ user NIPBANK\glushkov
+ user NIPBANK\chernav
+ user NIPBANK\berezkina
+object-group service RAIFF-PORTS
+ service-object tcp destination eq www 
+ service-object tcp destination eq https 
+ service-object tcp destination range 1700 1701 
+object-group service CONTACT-PORT
+ description ...Permit access to PlatSystem Contact...
+ service-object object 2221 
+ service-object tcp destination eq www 
+ service-object tcp destination eq https 
+object-group user QUICK-MAIL-USERS
+ user NIPBANK\svetlova
+ user NIPBANK\reznik
+ user NIPBANK\murzina
+ user NIPBANK\mashkina
+ user NIPBANK\kovalev2
+ user NIPBANK\kopylova
+ user NIPBANK\kanata
+ user NIPBANK\glushkov
+object-group network CYBER-PLAT
+ network-object host 62.231.13.158
+ network-object host 62.231.13.213
+ network-object host 62.231.13.160
+ network-object host 193.46.88.160
+ network-object object 109.72.129.48
+ network-object object 173.194.71.138
+ network-object object 173.194.71.100
+ network-object object 109.72.129.11
+object-group user ADMINS
+ user NIPBANK\vorobyevs
+ user NIPBANK\motorov
+ user NIPBANK\maslov
+ user NIPBANK\efimenko
+ user NIPBANK\volkov
+object-group network 1PB
+ network-object host Out_2_62.117.66.74
+ network-object host 79.142.25.1
+object-group service HTTP-RESTRICT-PORTS
+ service-object tcp destination eq 8000 
+ service-object tcp destination eq 8080 
+ service-object tcp destination eq 8888 
+ service-object tcp destination eq www 
+object-group service HTTP-FULL-PORTS
+ service-object tcp destination eq 8000 
+ service-object tcp destination eq 8014 
+ service-object tcp destination eq 8060 
+ service-object tcp destination eq 8080 
+ service-object tcp destination eq 8888 
+ service-object tcp destination eq www 
+object-group user HTTPS-FULL-USERS
+ user NIPBANK\zonova
+ user NIPBANK\wsuser
+ user NIPBANK\wasileva
+ user NIPBANK\vorobyevs
+ user NIPBANK\vorobeva
+ user NIPBANK\uvarova
+ user NIPBANK\Ushakova
+ user NIPBANK\tvorogov
+ user NIPBANK\suhova
+ user NIPBANK\stolarov
+ user NIPBANK\solodovn
+ user NIPBANK\soboleva
+ user NIPBANK\slesarev
+ user NIPBANK\skorohod
+ user NIPBANK\sherbakova
+ user NIPBANK\sharova
+ user NIPBANK\shar
+ user NIPBANK\shadskay
+ user NIPBANK\serova
+ user NIPBANK\sakova
+ user NIPBANK\raldugina
+ user NIPBANK\rahmanov
+ user NIPBANK\pupko
+ user NIPBANK\petrenko
+ user NIPBANK\ostapenko
+ user NIPBANK\orlovaim
+ user NIPBANK\NVStep
+ user NIPBANK\nazarova
+ user NIPBANK\murzina
+ user NIPBANK\motorov2000
+ user NIPBANK\motorov
+ user NIPBANK\morozov
+ user NIPBANK\monahov
+ user NIPBANK\mironova
+ user NIPBANK\minina
+ user NIPBANK\merkulva
+ user NIPBANK\maslov
+ user NIPBANK\mashkina
+ user NIPBANK\martynova
+ user NIPBANK\maltsev
+ user NIPBANK\lucenko
+ user NIPBANK\lovkova
+ user NIPBANK\lopashov
+ user NIPBANK\lomachuk
+ user NIPBANK\lobanova
+ user NIPBANK\lapova
+ user NIPBANK\kuznecov
+ user NIPBANK\kuruskin
+ user NIPBANK\Kreytor
+ user NIPBANK\kovalev2
+ user NIPBANK\kopylova
+ user NIPBANK\konstana
+ user NIPBANK\karikh
+ user NIPBANK\kanata
+ user NIPBANK\grishina
+ user NIPBANK\gribkova
+ user NIPBANK\gorytska
+ user NIPBANK\glushkov
+ user NIPBANK\glushenk
+ user NIPBANK\fomichev
+ user NIPBANK\fomicev
+ user NIPBANK\firsova
+ user NIPBANK\firsov
+ user NIPBANK\filippov
+ user NIPBANK\FileMgr
+ user NIPBANK\efimich
+ user NIPBANK\efimenko
+ user NIPBANK\dulov
+ user NIPBANK\dorohina
+ user NIPBANK\danilin
+ user NIPBANK\cugunova
+ user NIPBANK\chernav
+ user NIPBANK\chekurov
+ user NIPBANK\cerkesov
+ user NIPBANK\brusnik
+ user NIPBANK\borzykld
+ user NIPBANK\borzov
+ user NIPBANK\borisovsk
+ user NIPBANK\berezkna
+ user NIPBANK\Balykova
+ user NIPBANK\balans2w
+ user NIPBANK\baklagin
+ user NIPBANK\avtobank
+ user NIPBANK\audit
+ user NIPBANK\arhipova
+ user NIPBANK\anufriev
+ user NIPBANK\alekseev
+ user NIPBANK\aksenova
+ user NIPBANK\akinfiev
+ user NIPBANK\abramova
+ user NIPBANK\staliorus
+ user NIPBANK\demidova
+ user NIPBANK\buzikova
+ user NIPBANK\kopulova
+ user NIPBANK\bizikova
+ user NIPBANK\varvarin
+ user NIPBANK\zagaynova
+ user NIPBANK\suslina
+ user NIPBANK\pospelova
+ user NIPBANK\naydena
+ user NIPBANK\anishnko
+ user NIPBANK\repeshuk
+ user NIPBANK\rodionova
+ user NIPBANK\lobanovat
+ user NIPBANK\fomina
+ user NIPBANK\plugina
+ user NIPBANK\silkin
+ user NIPBANK\jelobano
+ user NIPBANK\loboda
+ user NIPBANK\lukanina
+ user NIPBANK\kondrashova
+ user NIPBANK\kozlova
+ user NIPBANK\kondrash
+ user NIPBANK\skrinik
+ user NIPBANK\provarenova
+ user NIPBANK\abkadyrv
+ user NIPBANK\melenevs
+ user NIPBANK\volkov
+ user NIPBANK\gusev
+ user NIPBANK\malishev
+ user NIPBANK\grishgu
+ user NIPBANK\artemova
+ user NIPBANK\novikova
+ user NIPBANK\kirsanov
+ user NIPBANK\kogut
+ user NIPBANK\kudryavceva
+ user NIPBANK\petryaikin
+ user NIPBANK\knyazev
+ user NIPBANK\tarantova
+ user NIPBANK\iliyna
+ user NIPBANK\ilina
+ user NIPBANK\audit1
+ user NIPBANK\volchkov
+ user NIPBANK\cygankova
+ user NIPBANK\umironov
+ user NIPBANK\shamorgina
+ user NIPBANK\sukneva
+ user NIPBANK\pushkareva
+ user NIPBANK\andreeva
+ user NIPBANK\grekova
+ user NIPBANK\test1
+ user NIPBANK\lucnikov
+ user NIPBANK\reznik
+ user NIPBANK\chirikova
+ user NIPBANK\jelezina
+ user NIPBANK\tihonova
+ user NIPBANK\mciadmin
+ user NIPBANK\test
+ user NIPBANK\chvanovi
+ user NIPBANK\svetlova
+ user NIPBANK\sungurova
+ user NIPBANK\efimenkoel
+ user NIPBANK\tumasyan
+ user NIPBANK\chernyaev
+ user NIPBANK\kuznecni
+ user NIPBANK\zagaynov
+ user NIPBANK\eliseeva
+ user NIPBANK\boycova
+ user NIPBANK\evreinova
+ user NIPBANK\makarval
+ user NIPBANK\grigekat
+ user NIPBANK\reuters
+ user NIPBANK\hodos
+ user NIPBANK\s.pavelko
+ user NIPBANK\kavadmin
+ user NIPBANK\apalkova
+ user NIPBANK\test2
+ user NIPBANK\sarycheva
+ user NIPBANK\maslyaeva
+ user NIPBANK\stenina
+ user NIPBANK\kosyreva
+ user NIPBANK\mahova
+ user NIPBANK\goryachk
+ user NIPBANK\doroshen
+ user NIPBANK\polishuk
+ user NIPBANK\kippa
+ user NIPBANK\airih
+ user NIPBANK\postmaster
+ user NIPBANK\nevedrov
+ user NIPBANK\molokano
+ user NIPBANK\terehova
+ user NIPBANK\kuznecea
+ user NIPBANK\nikonora
+ user NIPBANK\zukova
+ user NIPBANK\sergeev
+ user NIPBANK\molokanova
+ user NIPBANK\spiridon
+ user NIPBANK\lomova
+ user NIPBANK\belyakov
+ user NIPBANK\kuksova
+ user NIPBANK\popovich
+ user NIPBANK\plesakov
+ user NIPBANK\galahov
+ user NIPBANK\mihaylva
+ user NIPBANK\baranova
+ user NIPBANK\grinenko
+ user NIPBANK\kadimova
+ user NIPBANK\potemkin
+ user NIPBANK\travkin
+ user NIPBANK\sidyakin
+ user NIPBANK\ivanko
+ user NIPBANK\lavrentyeva
+ user NIPBANK\gusarova
+ user NIPBANK\sharaban
+ user NIPBANK\manina
+ user NIPBANK\rakova
+ user NIPBANK\halina
+ user NIPBANK\kudrash
+ user NIPBANK\lamonova
+ user NIPBANK\krirucko
+ user NIPBANK\karamlva
+ user NIPBANK\
+ user NIPBANK\skovpen
+ user NIPBANK\lavrent
+ user NIPBANK\pantel
+ user NIPBANK\Sharahov
+ user NIPBANK\popova
+ user NIPBANK\freyberg
+ user NIPBANK\lomakina
+ user NIPBANK\yaroshen
+ user NIPBANK\bilyalov
+ user NIPBANK\silakov
+object-group user FTP-USERS
+ user NIPBANK\wasileva
+ user NIPBANK\vorobyevs
+ user NIPBANK\stolarov
+ user NIPBANK\motorov2000
+ user NIPBANK\motorov
+ user NIPBANK\monahov
+ user NIPBANK\kuznecov
+ user NIPBANK\efimenko
+ user NIPBANK\dulov
+ user NIPBANK\dorohina
+ user NIPBANK\chernav
+ user NIPBANK\chekurov
+ user NIPBANK\brusnik
+ user NIPBANK\borzov
+ user NIPBANK\avtobank
+ user NIPBANK\karikh
+ user NIPBANK\pospelova
+ user NIPBANK\tvorogov
+ user NIPBANK\silkin
+ user NIPBANK\danilin
+ user NIPBANK\abkadyrv
+ user NIPBANK\mciadmin
+ user NIPBANK\kavadmin
+ user NIPBANK\volkov
+ user NIPBANK\andreeva
+ user NIPBANK\maslyaeva
+ user NIPBANK\gusarova
+object-group user POP3-USERS
+ user NIPBANK\zonova
+ user NIPBANK\vorobyevs
+ user NIPBANK\stolarov
+ user NIPBANK\shmeleva
+ user NIPBANK\sakova
+ user NIPBANK\rahmanov
+ user NIPBANK\motorov2000
+ user NIPBANK\motorov
+ user NIPBANK\kovalev2
+ user NIPBANK\gribkova
+ user NIPBANK\firsova
+ user NIPBANK\efimenko
+ user NIPBANK\dulov
+ user NIPBANK\chernav
+ user NIPBANK\card
+ user NIPBANK\brusnik
+ user NIPBANK\avtobank
+ user NIPBANK\afanas
+ user NIPBANK\melenevs
+ user NIPBANK\shadskay
+object-group user SMTP-USERS
+ user NIPBANK\vorobyevs
+ user NIPBANK\stolarov
+ user NIPBANK\shmeleva
+ user NIPBANK\rahmanov
+ user NIPBANK\motorov2000
+ user NIPBANK\motorov
+ user NIPBANK\gribkova
+ user NIPBANK\firsova
+ user NIPBANK\efimenko
+ user NIPBANK\dulov
+ user NIPBANK\chernav
+ user NIPBANK\brusnik
+ user NIPBANK\avtobank
+ user NIPBANK\melenevs
+ user NIPBANK\shadskay
+object-group user MICEX-USERS
+ user NIPBANK\rahmanov
+ user NIPBANK\naydena
+ user NIPBANK\kartasho
+ user NIPBANK\grishina
+ user NIPBANK\audit
+object-group service HTTPS-PORTS
+ service-object tcp destination eq 491 
+ service-object tcp destination eq https 
+ service-object tcp destination eq 9010 
+ service-object object 8443 
+object-group service IMAP4+POP3
+ service-object tcp destination eq imap4 
+ service-object tcp destination eq pop3 
+object-group service SMTP+SMTPS
+ service-object tcp destination eq smtp 
+ service-object tcp destination eq 465 
+object-group service BLOOMBERG-PORTS
+ service-object tcp destination range 1024 5000 
+ service-object tcp destination range 8194 8395 
+ service-object tcp source range 8194 8198 
+ service-object tcp source range 8209 8220 
+ service-object tcp source range 8290 8294 
+ service-object udp destination range 48129 48137 
+object-group network BLOOMBERG-SERVERS
+ network-object 160.43.250.0 255.255.255.0
+ network-object 206.156.53.0 255.255.255.0
+ network-object 205.216.112.0 255.255.255.0
+ network-object 208.22.56.0 255.255.255.0
+ network-object 208.22.57.0 255.255.255.0
+ network-object 69.191.192.0 255.255.255.0
+object-group user REX400-USERS
+ user NIPBANK\tvorogov
+ user NIPBANK\stolarov
+ user NIPBANK\sakova
+ user NIPBANK\motorov2000
+ user NIPBANK\motorov
+ user NIPBANK\monahov
+ user NIPBANK\filippov
+ user NIPBANK\efimenko
+ user NIPBANK\akinfiev
+ user NIPBANK\mciadmin
+object-group user RVS-USERS
+ user NIPBANK\sakova
+ user NIPBANK\monahov
+ user NIPBANK\efimenko
+ user NIPBANK\brusnik
+object-group network REX
+object-group network REX-SERVERS
+ network-object object mail.rex400.ru
+ network-object object reserve.rex400.ru
+object-group user VIP
+ user NIPBANK\wasileva
+ user NIPBANK\stolarov
+ user NIPBANK\minina
+ user NIPBANK\brusnik
+ user NIPBANK\raldugina
+ user NIPBANK\soboleva
+object-group network DM_INLINE_NETWORK_2
+ network-object object BIFIT
+ network-object object BIFIT_OUT-COMCOR
+object-group service DM_INLINE_SERVICE_22
+ service-object udp 
+ service-object tcp destination eq www 
+ service-object tcp destination eq https 
+object-group protocol DM_INLINE_PROTOCOL_6
+ protocol-object ip
+ protocol-object icmp
+ protocol-object udp
+object-group protocol DM_INLINE_PROTOCOL_1
+ protocol-object ip
+ protocol-object icmp
+object-group protocol DM_INLINE_PROTOCOL_2
+ protocol-object ip
+ protocol-object icmp
+object-group network DM_INLINE_NETWORK_14
+ network-object 0.0.0.0 0.0.0.0
+ network-object object 83.69.203.58
+ network-object host 80.239.254.161
+ network-object host 80.239.254.171
+object-group network HTTPS_for_servers
+ description Allow to access servers to HTTPS (for updates)
+ network-object object Opefire
+ network-object object Mail
+ network-object object ADS01
+ network-object object ADS1
+ network-object object ADS2
+object-group network DM_INLINE_NETWORK_26
+ network-object object DC01
+ network-object object DC02
+object-group protocol DM_INLINE_PROTOCOL_3
+ protocol-object ip
+ protocol-object icmp
+object-group user HTTPS-RESTRICT-USERS
+ user NIPBANK\kuksova
+object-group network VPN_REX400
+ network-object object vpn.rex400.ru
+object-group network DM_INLINE_NETWORK_6
+ network-object host 79.165.255.249
+ network-object object Piter_Bis
+object-group service DM_INLINE_SERVICE_7
+ group-object HTTP+HTTPS
+ group-object MAIL
+object-group user CBK_REX400_USERD
+ user NIPBANK\mciadmin
+ user NIPBANK\efimenko
+ user NIPBANK\motorov
+ user NIPBANK\stolarov
+object-group service vpn_rex400 tcp
+ port-object eq 22522
+object-group network NOVOSIB
+ network-object object EXCH-NOVOSIB
+ network-object object POS-ATM-NOVOSIB-Transl
+ network-object object PROD-WEB-NOVOSIB
+object-group network CB-GROUP
+ description CB-GROUP
+ network-object object CB-19
+ network-object object CB-21
+ network-object object CB-22
+object-group service NOVOSIB-SERVICES
+ description NOVOSIB-SERVICES
+ service-object object EXCH-NOVOSIB-11021 
+ service-object object POS-ATM-Service 
+ service-object object WEB-NOVOSIB-7777 
+ service-object object EXCH-NOVOSIB-range 
+ service-object object 8080 
+ service-object tcp destination eq www 
+ service-object tcp destination eq https 
+ service-object object 3789 
+ service-object object 4005 
+ service-object object 3788 
+object-group service DM_INLINE_SERVICE_9
+ service-object icmp 
+ group-object DNS
+ group-object HTTP-FULL-PORTS
+object-group protocol DM_INLINE_PROTOCOL_5
+ protocol-object ip
+ protocol-object icmp
+object-group network DM_INLINE_NETWORK_4
+ network-object object CB-19
+ network-object object CB-21
+ network-object object CB-22
+object-group network DM_INLINE_NETWORK_5
+ network-object host 77.105.163.206
+ network-object host 93.95.102.156
+object-group protocol DM_INLINE_PROTOCOL_4
+ protocol-object ip
+ protocol-object icmp
+ protocol-object tcp
+object-group protocol DM_INLINE_PROTOCOL_7
+ protocol-object ip
+ protocol-object icmp
+object-group network DM_INLINE_NETWORK_8
+ network-object object Bisquit_120.2
+ network-object object Bisquit_120.6
+object-group service DM_INLINE_TCP_29 tcp
+ port-object eq www
+ port-object eq https
+object-group service DM_INLINE_TCP_1 tcp
+ port-object eq www
+ port-object eq https
+object-group network DM_INLINE_NETWORK_7
+ network-object host 192.168.120.115
+ network-object host 192.168.143.53
+ network-object Dopoff-Savel 255.255.255.0
+ network-object 192.168.132.0 255.255.255.0
+ network-object 192.168.131.0 255.255.255.0
+ network-object 192.168.130.0 255.255.255.0
+ network-object Dopoff-Lianozovo 255.255.255.0
+ network-object host 192.168.152.52
+ network-object host 192.168.152.58
+object-group service DM_INLINE_TCP_2 tcp
+ port-object eq www
+ port-object eq https
+object-group network DM_INLINE_NETWORK_9
+ network-object host 192.168.120.31
+ network-object object test_agent
+ network-object host 192.168.132.7
+object-group network DM_INLINE_NETWORK_11
+ network-object object Opefire
+ network-object object WSUS
+ network-object object FreeNAS
+ network-object object PostgreSQL
+ network-object object SWIFTBRIDGE
+object-group network DM_INLINE_NETWORK_10
+ network-object host 192.168.132.7
+ network-object object WSA
+object-group network DM_INLINE_NETWORK_12
+ network-object object Esa
+ network-object object Mail
+object-group protocol DM_INLINE_PROTOCOL_20
+ protocol-object ip
+ protocol-object tcp
+object-group service DM_INLINE_TCP_4 tcp
+ port-object eq www
+ port-object eq https
+object-group service DM_INLINE_TCP_8 tcp
+ port-object eq www
+ port-object eq https
+object-group network DM_INLINE_NETWORK_13
+ network-object host 192.168.120.135
+ network-object object test_agent
+object-group service DM_INLINE_TCP_6 tcp
+ port-object eq www
+ port-object eq https
+object-group service DM_INLINE_TCP_7 tcp
+ port-object eq www
+ port-object eq https
+object-group protocol DM_INLINE_PROTOCOL_18
+ protocol-object ip
+ protocol-object tcp
+ protocol-object udp
+object-group service DM_INLINE_TCP_10 tcp
+ port-object eq www
+ port-object eq https
+object-group service DM_INLINE_TCP_9 tcp
+ port-object eq www
+ port-object eq https
+object-group protocol DM_INLINE_PROTOCOL_12
+ protocol-object ip
+ protocol-object icmp
+object-group network DM_INLINE_NETWORK_15
+ network-object host 192.168.51.2
+ network-object object DOORS-128.114
+object-group service DM_INLINE_SERVICE_1
+ service-object icmp 
+ service-object tcp destination eq ftp 
+ service-object tcp destination eq ftp-data 
+object-group network DM_INLINE_NETWORK_16
+ network-object host 192.168.131.5
+ network-object host 192.168.133.11
+object-group protocol DM_INLINE_PROTOCOL_15
+ protocol-object ip
+ protocol-object icmp
+object-group service DM_INLINE_TCP_12 tcp
+ port-object eq www
+ port-object eq https
+object-group service DM_INLINE_TCP_13 tcp
+ port-object eq www
+ port-object eq https
+object-group service DM_INLINE_SERVICE_5
+ service-object icmp 
+ group-object DNS
+ group-object TIME
+object-group service CIFS-NETBIOS
+ description CIFS-NETBIOS
+ service-object tcp destination eq netbios-ssn 
+ service-object udp destination eq netbios-dgm 
+ service-object udp destination eq netbios-ns 
+ service-object tcp-udp destination eq 445 
+object-group service DM_INLINE_SERVICE_10
+ group-object CIFS-NETBIOS
+ group-object DNS
+object-group network DM_INLINE_NETWORK_28
+ network-object host 193.232.37.26
+ network-object host 206.201.228.186
+object-group protocol DM_INLINE_PROTOCOL_14
+ protocol-object ip
+ protocol-object icmp
+object-group protocol DM_INLINE_PROTOCOL_10
+ protocol-object ip
+ protocol-object icmp
+object-group service DM_INLINE_TCP_3 tcp
+ port-object eq www
+ port-object eq https
+object-group network DM_INLINE_NETWORK_18
+ network-object host 195.91.128.10
+ network-object host 217.112.22.30
+ network-object host 95.165.202.10
+ network-object host 195.218.252.247
+ network-object host 213.87.9.75
+ network-object host 79.98.138.107
+ network-object host 8.8.8.8
+ network-object host 82.138.21.186
+ network-object host 95.165.210.114
+ network-object host 95.165.202.2
+ network-object host 86.62.75.137
+object-group protocol DM_INLINE_PROTOCOL_13
+ protocol-object ip
+ protocol-object icmp
+object-group service DM_INLINE_TCP_33 tcp
+ port-object eq www
+ port-object eq https
+object-group service DM_INLINE_TCP_32 tcp
+ port-object eq www
+ port-object eq https
+object-group network DM_INLINE_NETWORK_17
+ network-object host 192.168.132.8
+ network-object host 192.168.132.9
+object-group network DM_INLINE_NETWORK_23
+ network-object host 192.168.132.8
+ network-object host 192.168.132.9
+object-group service DM_INLINE_TCP_34 tcp
+ port-object eq www
+ port-object eq https
+object-group network DM_INLINE_NETWORK_19
+ network-object object BIFIT_OUT-COMCOR
+ network-object object BIFIT_OUT-ZEBRA
+object-group service DM_INLINE_SERVICE_14
+ service-object ip 
+ service-object icmp 
+ service-object tcp destination eq telnet 
+object-group service DM_INLINE_TCP_15 tcp
+ port-object eq www
+ port-object eq https
+object-group service DM_INLINE_SERVICE_15
+ service-object ip 
+ service-object icmp 
+ service-object tcp destination eq ssh 
+object-group service DM_INLINE_TCP_16 tcp
+ port-object eq www
+ port-object eq https
+object-group network DM_INLINE_NETWORK_20
+ network-object host 173.194.122.245
+ network-object host 173.194.122.246
+object-group service DM_INLINE_TCP_17 tcp
+ port-object eq www
+ port-object eq https
+object-group protocol DM_INLINE_PROTOCOL_11
+ protocol-object ip
+ protocol-object icmp
+ protocol-object tcp
+object-group user AD_CONTRACTORS
+ user-group nipbank\\WSA
+ user nipbank\test2
+object-group service GOROD
+ description GOROD
+ service-object object GOROD_1494 
+ service-object object GOROD_2891 
+ service-object object GOROD_udp_1494 
+ service-object object GOROD_udp_2891 
+object-group service HTTPS-FULL-PORTS
+object-group service DM_INLINE_SERVICE_16
+ service-object object 465 
+ service-object object 993 
+object-group service DM_INLINE_TCP_5 tcp
+ port-object eq www
+ port-object eq https
+object-group network DM_INLINE_NETWORK_21
+ network-object object QBis
+ network-object object QBis-OUT
+ network-object object QBis-test
+object-group network DM_INLINE_NETWORK_3
+ network-object host 192.168.120.32
+ network-object object Opefire
+ network-object object CONTACT-SRV
+ network-object host 192.168.120.19
+ network-object object Mail
+ network-object object FreeNAS
+ network-object object PostgreSQL
+ network-object host 192.168.120.160
+object-group network DM_INLINE_NETWORK_24
+ network-object host DBO
+ network-object host 176.57.216.7
+ network-object object BIFIT
+object-group network DM_INLINE_NETWORK_29
+ network-object host 178.237.20.20
+ network-object host 178.237.20.72
+object-group protocol DM_INLINE_PROTOCOL_17
+ protocol-object ip
+ protocol-object icmp
+object-group service DM_INLINE_TCP_35 tcp
+ port-object eq www
+ port-object eq https
+object-group service DM_INLINE_TCP_18 tcp
+ port-object eq www
+ port-object eq https
+object-group service DM_INLINE_SERVICE_20
+ service-object ip 
+ service-object icmp 
+ service-object tcp 
+ service-object tcp destination eq www 
+ service-object tcp destination eq https 
+ service-object object 7788 
+ service-object object 555 
+object-group service DM_INLINE_TCP_19 tcp
+ port-object eq www
+ port-object eq https
+object-group network DM_INLINE_NETWORK_22
+ network-object host 217.28.247.212
+ network-object host 91.220.5.40
+object-group service DM_INLINE_TCP_11 tcp
+ port-object eq www
+ port-object eq https
+object-group protocol DM_INLINE_PROTOCOL_8
+ protocol-object ip
+ protocol-object icmp
+object-group protocol DM_INLINE_PROTOCOL_9
+ protocol-object ip
+ protocol-object icmp
+object-group protocol DM_INLINE_PROTOCOL_16
+ protocol-object ip
+ protocol-object icmp
+object-group protocol DM_INLINE_PROTOCOL_19
+ protocol-object ip
+ protocol-object icmp
+object-group network DM_INLINE_NETWORK_32
+ network-object host 195.218.252.247
+ network-object host 82.138.21.186
+object-group service DM_INLINE_SERVICE_18
+ service-object icmp 
+ group-object HTTP+HTTPS
+object-group network DM_INLINE_NETWORK_31
+ network-object host 159.220.40.98
+ network-object host 209.191.134.207
+ network-object host 163.231.4.70
+ network-object host 164.57.192.16
+ network-object host 206.132.6.134
+ network-object host 159.220.41.129
+ network-object host 159.220.2.161
+ network-object host 159.220.20.209
+ network-object host 159.220.1.64
+ network-object host 192.165.219.177
+object-group service DM_INLINE_TCP_23 tcp
+ port-object eq www
+ port-object eq https
+object-group service DM_INLINE_SERVICE_21
+ service-object icmp 
+ service-object tcp destination eq smtp 
+object-group service DM_INLINE_TCP_26 tcp
+ port-object eq www
+ port-object eq https
+object-group service DM_INLINE_SERVICE_19
+ service-object object 4001 
+ service-object object 4023 
+ service-object ip 
+object-group service DM_INLINE_TCP_21 tcp
+ port-object eq www
+ port-object eq https
+object-group service DM_INLINE_TCP_14 tcp
+ port-object eq www
+ port-object eq https
+ port-object eq ftp
+object-group service DM_INLINE_TCP_20 tcp
+ port-object eq www
+ port-object eq https
+object-group network DM_INLINE_NETWORK_30
+ network-object host 217.28.247.214
+ network-object host 91.220.5.42
+object-group service WEBEX
+ description WEBEX
+ service-object object webex_1270 
+ service-object object webex_5101 
+ service-object object webex_53 
+ service-object object webex_7500 
+ service-object object webex_7501 
+ service-object object webex_8554 
+ service-object object webex_9000 
+ service-object object webex_9001 
+ service-object object webex_u_1270 
+ service-object object webex_u_5101 
+object-group service DM_INLINE_TCP_22 tcp
+ port-object eq www
+ port-object eq https
+object-group service DM_INLINE_TCP_24 tcp
+ port-object eq www
+ port-object eq https
+object-group service DM_INLINE_TCP_25 tcp
+ port-object eq www
+ port-object eq https
+object-group service DM_INLINE_TCP_27 tcp
+ port-object eq www
+ port-object eq https
+object-group service DM_INLINE_TCP_28 tcp
+ port-object eq www
+ port-object eq https
+object-group network DM_INLINE_NETWORK_33
+ network-object host 66.218.170.44
+ network-object host 66.218.170.46
+object-group service DM_INLINE_TCP_30 tcp
+ port-object eq www
+ port-object eq https
+object-group service DM_INLINE_TCP_31 tcp
+ port-object eq www
+ port-object eq https
+object-group network KAVADMIN-IP-SERV
+ network-object host 93.191.13.103
+ network-object host 95.167.139.6
+ network-object object 62.128.100.81
+ network-object object 62.76.24.147
+ network-object object 62.76.24.153
+ network-object object 93.159.230.19
+ network-object object 93.191.13.100
+ network-object object 93.191.13.103
+ network-object object 95.167.139.6
+object-group protocol DM_INLINE_PROTOCOL_23
+ protocol-object ip
+ protocol-object icmp
+object-group network DM_INLINE_NETWORK_25
+ network-object host 195.218.252.247
+ network-object host 82.138.21.186
+ network-object host 8.8.8.8
+ network-object host 213.87.9.75
+ network-object host 79.98.138.107
+ network-object host 95.165.210.114
+object-group service DM_INLINE_TCP_40 tcp
+ port-object eq www
+ port-object eq https
+object-group network DM_INLINE_NETWORK_27
+ network-object host 192.168.131.4
+ network-object object Signal_Savel
+ network-object object Signal_Sretenka
+object-group service DM_INLINE_TCP_36 tcp
+ port-object eq www
+ port-object eq https
+object-group service DM_INLINE_TCP_37 tcp
+ port-object eq ftp
+ port-object eq ftp-data
+object-group service DM_INLINE_SERVICE_3
+ service-object ip 
+ service-object icmp 
+ service-object tcp destination eq ftp 
+ service-object tcp destination eq ftp-data 
+object-group protocol DM_INLINE_PROTOCOL_21
+ protocol-object ip
+ protocol-object udp
+object-group service DM_INLINE_SERVICE_6
+ service-object udp 
+ service-object tcp destination eq ftp 
+ service-object tcp destination eq ftp-data 
+object-group protocol DM_INLINE_PROTOCOL_27
+ protocol-object ip
+ protocol-object udp
+object-group service DM_INLINE_TCP_39 tcp
+ port-object eq www
+ port-object eq https
+object-group service DM_INLINE_SERVICE_11
+ service-object ip 
+ service-object icmp 
+ group-object DNS
+object-group network DM_INLINE_NETWORK_34
+ network-object host 195.218.252.247
+ network-object host 213.87.9.75
+ network-object host 79.98.138.107
+ network-object host 8.8.8.8
+ network-object host 82.138.21.186
+ network-object host 95.165.210.114
+object-group service DM_INLINE_TCP_41 tcp
+ port-object eq www
+ port-object eq https
+object-group network DM_INLINE_NETWORK_35
+ network-object 159.220.1.0 255.255.255.128
+ network-object 159.220.34.0 255.255.255.128
+ network-object 146.242.30.0 255.255.254.0
+ network-object 159.220.0.128 255.255.255.128
+ network-object 159.220.16.0 255.255.255.0
+ network-object 159.220.18.0 255.255.255.0
+ network-object 159.220.24.0 255.255.254.0
+ network-object 159.220.40.0 255.255.255.0
+ network-object 159.220.41.128 255.255.255.128
+ network-object 159.220.43.0 255.255.255.128
+ network-object 159.220.50.0 255.255.254.0
+ network-object 159.220.54.0 255.255.255.128
+ network-object 159.220.56.0 255.255.255.0
+ network-object 159.220.80.0 255.255.255.224
+ network-object 192.155.136.0 255.255.248.0
+ network-object host 192.155.141.196
+ network-object host 192.155.142.4
+ network-object 192.165.219.128 255.255.255.128
+ network-object host 192.165.219.25
+ network-object 192.165.223.128 255.255.255.128
+object-group service DM_INLINE_TCP_42 tcp
+ port-object eq www
+ port-object eq https
+object-group service DM_INLINE_TCP_38 tcp
+ port-object eq www
+ port-object eq https
+object-group service DM_INLINE_SERVICE_13
+ service-object ip 
+ service-object icmp 
+ service-object tcp destination eq ssh 
+object-group protocol DM_INLINE_PROTOCOL_22
+ protocol-object ip
+ protocol-object tcp
+object-group protocol DM_INLINE_PROTOCOL_24
+ protocol-object ip
+ protocol-object icmp
+object-group network DM_INLINE_NETWORK_37
+ network-object host 194.105.130.18
+ network-object host 194.105.130.19
+ network-object host 194.105.130.8
+ network-object host 194.105.130.9
+ network-object host 194.105.131.18
+ network-object host 194.105.131.19
+ network-object host 212.248.17.130
+ network-object host 89.175.162.246
+object-group protocol DM_INLINE_PROTOCOL_25
+ protocol-object ip
+ protocol-object icmp
+object-group service DM_INLINE_TCP_43 tcp
+ port-object eq www
+ port-object eq https
+access-list outside_ISP2_access_in extended deny object-group DM_INLINE_PROTOCOL_22 host 170.151.24.203 any 
+access-list outside_ISP2_access_in extended permit object-group DM_INLINE_PROTOCOL_20 any object BCL-Test 
+access-list outside_ISP2_access_in extended permit object-group DM_INLINE_SERVICE_20 any object Site 
+access-list outside_ISP2_access_in extended permit object-group DM_INLINE_PROTOCOL_4 any object-group DM_INLINE_NETWORK_21 
+access-list outside_ISP2_access_in extended permit object-group DM_INLINE_PROTOCOL_11 any object Video-192.168.148.2 
+access-list outside_ISP2_access_in extended permit tcp any object Esa eq smtp 
+access-list outside_ISP2_access_in extended permit object-group DM_INLINE_SERVICE_21 any object EXCHANGE 
+access-list outside_ISP2_access_in extended permit tcp object-group DM_INLINE_NETWORK_6 object-group DM_INLINE_NETWORK_8 eq ssh 
+access-list outside_ISP2_access_in extended permit tcp any object BIFIT eq 9091 time-range 24x7 
+access-list outside_ISP2_access_in extended permit tcp any object BIFIT eq https time-range 24x7 
+access-list outside_ISP2_access_in extended permit tcp any object IP_WebCam_Manage object-group DM_INLINE_TCP_29 inactive 
+access-list outside_ISP2_access_in extended permit ip any object CUP-Zol-Korona 
+access-list outside_ISP2_access_in extended permit object 3789 any object POS-ATM-NOVOSIB-Transl 
+access-list outside_ISP2_access_in extended permit object 3171 any object POS-ATM-NOVOSIB-Transl 
+access-list outside_ISP2_access_in extended permit object 3788 any object POS-ATM-NOVOSIB-Transl 
+access-list outside_ISP2_access_in extended permit object 4000 any object 172.16.0.47 
+access-list outside_ISP2_access_in extended deny ip host 212.186.56.2 any 
+access-list outside_ISP2_access_in extended deny object-group DM_INLINE_PROTOCOL_7 host 90.155.53.61 object BIFIT_OUT-COMCOR 
+access-list VPN extended permit ip 10.24.85.0 255.255.255.0 10.24.1.0 255.255.255.0 
+access-list DENYALL extended deny ip any any 
+access-list POS-TERM extended permit icmp any any 
+access-list POS-TERM extended permit object 4005 object SSL-BIIS any 
+access-list POS-TERM extended permit object-group DM_INLINE_SERVICE_10 object ZDO-Local any 
+access-list POS-TERM extended permit object-group NOVOSIB-SERVICES object-group POS-TERM-NETS object-group NOVOSIB 
+access-list POS-TERM extended permit object-group NOVOSIB-SERVICES 10.10.10.0 255.255.255.0 object-group NOVOSIB 
+access-list POS-TERM extended permit object-group URALSIB-SERVICES object-group POS-TERM-NETS object-group URALSIB-DEST 
+access-list POS-TERM extended permit icmp object-group POS-TERM-NETS object-group DM_INLINE_NETWORK_1 
+access-list POS-TERM extended permit object-group Monitoring 10.10.10.0 255.255.255.0 object-group Ural-Monitoring 
+access-list ADMIN-SPLIT standard permit 172.16.0.0 255.255.255.0 
+access-list ADMIN-SPLIT standard permit 192.168.20.0 255.255.255.0 
+access-list ADMIN-SPLIT standard permit 192.168.120.0 255.255.255.0 
+access-list ADMIN-SPLIT remark LABS-Exchange-2012
+access-list ADMIN-SPLIT standard permit 192.168.90.0 255.255.255.0 
+access-list ADMIN-SPLIT remark Gukovsky
+access-list ADMIN-SPLIT standard permit 192.168.130.0 255.255.255.0 
+access-list ADMIN-SPLIT standard permit 192.168.128.0 255.255.255.0 
+access-list ADMIN-SPLIT standard permit 192.168.133.0 255.255.255.0 
+access-list outside_Zebra_access_in extended permit object 3171 any object POS-ATM-NOVOSIB-Transl 
+access-list outside_Zebra_access_in extended permit object 3788 any object POS-ATM-NOVOSIB-Transl 
+access-list outside_Zebra_access_in extended permit object 3789 any object POS-ATM-NOVOSIB-Transl 
+access-list outside_Zebra_access_in extended permit tcp any host 10.24.1.2 eq 1515 
+access-list outside_Zebra_access_in extended permit tcp any host 10.24.1.2 eq 1313 
+access-list outside_Zebra_access_in extended permit tcp any object BIFIT eq 9091 time-range 24x7 
+access-list outside_Zebra_access_in extended permit tcp any object BIFIT eq https time-range 24x7 
+access-list outside_Zebra_access_in extended permit tcp any host 217.14.246.34 eq 1515 
+access-list outside_Zebra_access_in extended permit tcp any object Esa eq smtp 
+access-list outside_Zebra_access_in extended permit tcp any object EXCHANGE eq smtp 
+access-list ADMIN-FILTER extended permit ip 172.16.255.0 255.255.255.0 172.16.0.0 255.255.255.0 
+access-list ADMIN-FILTER extended permit ip 172.16.255.0 255.255.255.0 host 192.168.20.222 
+access-list ADMIN-FILTER extended permit ip 172.16.255.0 255.255.255.0 192.168.132.0 255.255.255.0 
+access-list ADMIN-FILTER extended permit ip 172.16.255.0 255.255.255.0 192.168.150.0 255.255.255.0 
+access-list ADMIN-FILTER extended permit ip 172.16.255.0 255.255.255.0 192.168.120.0 255.255.255.0 
+access-list web-telnet extended permit tcp host 62.122.100.178 any 
+access-list proxy_access_in extended permit object-group DM_INLINE_PROTOCOL_1 any any 
+access-list INSIDE extended permit object-group DM_INLINE_PROTOCOL_27 host 192.168.120.113 any time-range 24x7 
+access-list INSIDE extended deny object-group DM_INLINE_PROTOCOL_21 host 192.168.120.186 any time-range 24x7 
+access-list INSIDE extended permit object-group DM_INLINE_SERVICE_3 object-group INTERNAL-NETS host 91.208.232.230 time-range 24x7 
+access-list INSIDE extended permit object-group DM_INLINE_PROTOCOL_14 object-group DM_INLINE_NETWORK_23 any time-range 24x7 
+access-list INSIDE extended permit object-group DM_INLINE_PROTOCOL_17 host 192.168.120.160 any time-range 24x7 
+access-list INSIDE extended permit object-group DM_INLINE_PROTOCOL_13 object Signal_Sretenka object-group DM_INLINE_NETWORK_18 time-range 24x7 
+access-list INSIDE extended permit object-group DM_INLINE_SERVICE_11 object Signal_Savel object-group DM_INLINE_NETWORK_25 time-range 24x7 
+access-list INSIDE extended permit object-group DM_INLINE_PROTOCOL_19 object Signal_PAVELEC object-group DM_INLINE_NETWORK_32 time-range 24x7 
+access-list INSIDE extended permit object-group DM_INLINE_SERVICE_9 object Sigalizaciya-Rumyancevo object-group DM_INLINE_NETWORK_5 
+access-list INSIDE remark Allow servers to update
+access-list INSIDE extended permit object-group DM_INLINE_SERVICE_5 object-group DM_INLINE_NETWORK_26 any 
+access-list INSIDE remark ...Permit Mail from Exchange...
+access-list INSIDE extended permit object-group HTTP+HTTPS object WSA any 
+access-list INSIDE remark ...Permit Mail from Exchange...
+access-list INSIDE extended permit object-group DM_INLINE_SERVICE_7 object-group DM_INLINE_NETWORK_12 any 
+access-list INSIDE remark Allow servers to update
+access-list INSIDE extended permit object-group DM_INLINE_SERVICE_18 object-group DM_INLINE_NETWORK_11 any 
+access-list INSIDE remark Kaspersky
+access-list INSIDE extended permit object-group HTTP+HTTPS host 192.168.135.2 any 
+access-list INSIDE remark Kaspersky
+access-list INSIDE extended permit object-group HTTP+HTTPS object Kavadmin object-group KAVADMIN-IP-SERV 
+access-list INSIDE remark ...Permit access for RX...
+access-list INSIDE extended permit object-group DM_INLINE_PROTOCOL_3 object-group RX any time-range Working_hours 
+access-list INSIDE extended permit object-group DM_INLINE_PROTOCOL_23 object LAN-1C object-group DM_INLINE_NETWORK_14 time-range 1C 
+access-list INSIDE remark ...Permit access to PlatSystem Contact...
+access-list INSIDE extended permit object-group CONTACT-PORT object CONTACT-SRV any 
+access-list INSIDE extended permit object-group DM_INLINE_PROTOCOL_25 object MONOBLOCK host 188.225.12.64 time-range 24x7 
+access-list INSIDE remark ...Permit access to www.nipbank.ru
+access-list INSIDE extended permit object-group DM_INLINE_PROTOCOL_24 object MONOBLOCK any inactive 
+access-list INSIDE remark ...Permit access to www.nipbank.ru
+access-list INSIDE extended permit object-group DM_INLINE_PROTOCOL_16 object DATA-Office-SITE host 176.57.209.5 
+access-list INSIDE remark ...Permit access to www.nipbank.ru
+access-list INSIDE extended permit object-group DM_INLINE_PROTOCOL_12 host 192.168.78.6 any 
+access-list INSIDE remark ...Permit access to www.nipbank.ru
+access-list INSIDE extended permit object-group DM_INLINE_PROTOCOL_15 host 192.168.77.4 any time-range Working_hours 
+access-list INSIDE remark ...Permit access to www.nipbank.ru
+access-list INSIDE extended permit object-group DM_INLINE_PROTOCOL_8 host 192.168.77.2 any 
+access-list INSIDE remark ...Permit access to www.nipbank.ru
+access-list INSIDE extended deny object-group DM_INLINE_PROTOCOL_9 object DATA-Office-SITE any 
+access-list INSIDE remark CRYPTO-PRO
+access-list INSIDE extended permit object-group DM_INLINE_SERVICE_19 object-group INTERNAL-NETS host 193.37.157.10 
+access-list INSIDE extended permit object-group GOROD object-group INTERNAL-NETS host 194.85.126.247 
+access-list INSIDE extended permit ip object-group INTERNAL-NETS 10.10.10.0 255.255.255.0 
+access-list INSIDE extended permit ip object-group INTERNAL-NETS 192.168.60.0 255.255.255.0 time-range Working_hours 
+access-list INSIDE remark ...Permit access to PlatSystem Raiffeisen...
+access-list INSIDE extended permit object-group RAIFF-PORTS object-group-user RAIFF-USERS object-group INTERNAL-NETS object-group PLAT-SYS-RAIFF time-range Working_hours 
+access-list INSIDE remark ...Permit access to Quick Mail...
+access-list INSIDE extended permit tcp object-group-user QUICK-MAIL-USERS object-group INTERNAL-NETS host 193.28.44.143 eq www time-range Working_hours 
+access-list INSIDE extended permit ip object-group-user ADMINS object-group INTERNAL-NETS any time-range Working_hours 
+access-list INSIDE extended permit ip object-group-user ADMINS object-group INTERNAL-NETS object-group 1PB time-range Working_hours 
+access-list INSIDE remark ...Permit HTTP...
+access-list INSIDE extended permit object-group HTTP-RESTRICT-PORTS object-group-user HTTP-RESTRICT-USERS object-group INTERNAL-NETS any time-range Working_hours 
+access-list INSIDE extended permit object-group DM_INLINE_SERVICE_1 object-group-user HTTP-FULL-USERS object-group INTERNAL-NETS any time-range Working_hours 
+access-list INSIDE extended permit object-group HTTP-FULL-PORTS object-group-user HTTP-FULL-USERS object-group INTERNAL-NETS any time-range 24x7 
+access-list INSIDE remark ...Permit HTTPS...
+access-list INSIDE extended permit object-group HTTPS-PORTS object-group-user HTTPS-FULL-USERS object-group INTERNAL-NETS any time-range 24x7 
+access-list INSIDE remark ...Permit FTP...
+access-list INSIDE extended permit tcp object-group-user FTP-USERS object-group INTERNAL-NETS any eq ftp time-range 24x7 
+access-list INSIDE remark ...Permit IMAP4 and POP3...
+access-list INSIDE extended permit object-group IMAP4+POP3 object-group-user POP3-USERS object-group INTERNAL-NETS any time-range Working_hours 
+access-list INSIDE remark ...Permit SMTP and SMTPS...
+access-list INSIDE extended permit object-group SMTP+SMTPS object-group-user SMTP-USERS object-group INTERNAL-NETS any time-range Working_hours 
+access-list INSIDE remark ...Permit Reitor...
+access-list INSIDE extended permit tcp object-group-user ADMINS object-group INTERNAL-NETS any eq 1935 
+access-list INSIDE remark ...Permit RVS access...
+access-list INSIDE extended permit tcp object-group-user RVS-USERS object-group INTERNAL-NETS any eq 12801 time-range Working_hours 
+access-list INSIDE remark ...Permit Micex...
+access-list INSIDE extended permit tcp object-group-user MICEX-USERS object-group INTERNAL-NETS host 91.208.232.1 eq www time-range Working_hours 
+access-list INSIDE remark ...Permit REX access...
+access-list INSIDE extended permit tcp object-group INTERNAL-NETS object-group REX-SERVERS eq 19020 
+access-list INSIDE extended permit tcp object-group INTERNAL-NETS object-group VPN_REX400 object-group vpn_rex400 
+access-list INSIDE remark ...Permit pay.avtobank.ru access...
+access-list INSIDE extended permit tcp object-group INTERNAL-NETS host 193.109.114.129 eq pop3 
+access-list INSIDE extended permit tcp object-group INTERNAL-NETS host 193.109.114.129 eq smtp 
+access-list INSIDE extended permit object Rex400_VPN_TCP22522 object Reporting_MGTU object Rex400_VPN_Server time-range Working_hours 
+access-list INSIDE extended permit object RDP object-group INTERNAL-NETS object CUP-Local time-range 24x7 
+access-list HTTP-TRAFFIC extended permit object-group HTTP-RESTRICT-PORTS object-group INTERNAL-NETS any 
+access-list HTTP-TRAFFIC extended permit object-group HTTP-FULL-PORTS object-group INTERNAL-NETS any 
+access-list URL-ADMIN-FILTER extended permit object-group HTTP-FULL-PORTS object-group-user ADMINS object-group INTERNAL-NETS any 
+access-list URL-ADMIN-FILTER extended permit object-group HTTP-FULL-PORTS object-group-user VIP object-group INTERNAL-NETS any 
+access-list web extended permit tcp host 192.168.34.2 host 10.24.1.3 
+access-list web1 extended permit ip any any 
+access-list guest_access_in remark 9:10-20:00
+access-list guest_access_in extended permit ip host 192.168.2.93 any time-range guest inactive 
+access-list guest_access_in remark 9:10-20:00
+access-list guest_access_in extended permit object TS_VMS 192.168.2.0 255.255.255.0 any time-range guest 
+access-list guest_access_in remark 9:10-20:00
+access-list guest_access_in extended permit object-group DM_INLINE_SERVICE_6 any any time-range guest 
+access-list guest_access_in remark 9:10-20:00
+access-list guest_access_in extended permit object-group HTTP+HTTPS any any time-range guest 
+access-list guest_access_in remark 9:10-20:00
+access-list guest_access_in extended permit object-group DNS any host 8.8.8.8 time-range guest 
+access-list guest_access_in remark 9:10-20:00
+access-list guest_access_in extended permit tcp any object-group DM_INLINE_NETWORK_2 eq 9091 time-range guest 
+access-list guest_access_in remark SBERBANK
+access-list guest_access_in extended permit ip any host 194.54.14.141 time-range guest 
+access-list guest_access_in remark SBERBANK
+access-list guest_access_in extended permit ip any host 194.54.14.131 time-range guest 
+access-list guest_access_in remark 9:10-20:00
+access-list guest_access_in extended permit object-group HTTP+HTTPS object MISHA_6_etag any time-range guest 
+access-list guest_access_in remark 9:10-20:00
+access-list guest_access_in extended permit object-group DM_INLINE_SERVICE_16 any any time-range guest 
+access-list guest_access_in remark 9:10-20:00
+access-list guest_access_in extended permit ip any any time-range guest inactive 
+access-list PUB-VipNET_access_in extended permit object-group DM_INLINE_PROTOCOL_6 any any 
+access-list Private-VipNET_access_in extended permit object-group DM_INLINE_PROTOCOL_2 any any 
+access-list SPLIT-TUNNEL-LIST standard permit 192.168.1.0 255.255.255.0 
+access-list outside_cryptomap_1 extended permit ip object KART-STD-LOCAL object KART-STD-NOVOSIB 
+access-list outside_2_cryptomap_1 extended permit ip object CB-OTCHET-LOCAL object-group DM_INLINE_NETWORK_4 
+access-list CB-OTCHET_access_in extended permit object-group DM_INLINE_PROTOCOL_5 192.168.181.0 255.255.255.0 object-group CB-GROUP 
+access-list ACL-WEBPROXY-TRAFFIC remark WEBEX
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp any host 62.109.230.112 object-group DM_INLINE_TCP_20 
+access-list ACL-WEBPROXY-TRAFFIC remark KONSULTANT
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp host 192.168.120.45 object-group DM_INLINE_NETWORK_37 object-group DM_INLINE_TCP_25 
+access-list ACL-WEBPROXY-TRAFFIC remark AUDIT
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp host 192.168.120.115 any object-group DM_INLINE_TCP_38 
+access-list ACL-WEBPROXY-TRAFFIC remark SMEV
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp host 192.168.120.113 any object-group DM_INLINE_TCP_43 
+access-list ACL-WEBPROXY-TRAFFIC remark WEBEX
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp host 192.168.120.160 any object-group DM_INLINE_TCP_41 
+access-list ACL-WEBPROXY-TRAFFIC remark SIGNALIZACIA
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp object-group DM_INLINE_NETWORK_27 any object-group DM_INLINE_TCP_31 
+access-list ACL-WEBPROXY-TRAFFIC remark SIGNAL-SAVEL
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp host 192.168.128.4 object-group DM_INLINE_NETWORK_34 object-group DM_INLINE_TCP_40 
+access-list ACL-WEBPROXY-TRAFFIC remark portal4.cbr.ru
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp object-group INTERNAL-NETS host 212.40.192.31 object-group DM_INLINE_TCP_39 
+access-list ACL-WEBPROXY-TRAFFIC remark Martunova
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp object-group INTERNAL-NETS host 91.208.232.230 object-group DM_INLINE_TCP_37 
+access-list ACL-WEBPROXY-TRAFFIC remark Martunova
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp host 192.168.120.31 any object-group DM_INLINE_TCP_34 
+access-list ACL-WEBPROXY-TRAFFIC remark Martunova
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp host 192.168.120.115 any object-group DM_INLINE_TCP_35 
+access-list ACL-WEBPROXY-TRAFFIC remark ICQ
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp host 192.168.120.135 object-group DM_INLINE_NETWORK_29 object-group DM_INLINE_TCP_3 
+access-list ACL-WEBPROXY-TRAFFIC remark WIFI
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp host 192.168.120.241 any object-group DM_INLINE_TCP_21 
+access-list ACL-WEBPROXY-TRAFFIC remark CENTR
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp object-group DM_INLINE_NETWORK_17 any object-group DM_INLINE_TCP_32 
+access-list ACL-WEBPROXY-TRAFFIC remark DERBENT-Client-WiFi
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp object-group DM_INLINE_NETWORK_16 object-group DM_INLINE_NETWORK_24 object-group DM_INLINE_TCP_5 
+access-list ACL-WEBPROXY-TRAFFIC remark KAVADMIN
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp object Kavadmin object-group KAVADMIN-IP-SERV object-group DM_INLINE_TCP_30 
+access-list ACL-WEBPROXY-TRAFFIC remark WIFI
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp host 192.168.78.6 any object-group DM_INLINE_TCP_33 
+access-list ACL-WEBPROXY-TRAFFIC remark WIFI
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp object DATA-Office-SITE any object-group DM_INLINE_TCP_11 
+access-list ACL-WEBPROXY-TRAFFIC remark FTP-MOEX
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp any host 91.208.232.230 object-group DM_INLINE_TCP_36 
+access-list ACL-WEBPROXY-TRAFFIC remark GOSUSLUGI
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp any host 109.207.1.97 object-group DM_INLINE_TCP_10 
+access-list ACL-WEBPROXY-TRAFFIC remark KORONA
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp any object-group DM_INLINE_NETWORK_28 object-group DM_INLINE_TCP_18 
+access-list ACL-WEBPROXY-TRAFFIC remark Western-WUPOS
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp any object-group DM_INLINE_NETWORK_33 object-group DM_INLINE_TCP_28 
+access-list ACL-WEBPROXY-TRAFFIC remark Seminar
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp any 37.130.192.0 255.255.255.0 object-group DM_INLINE_TCP_27 
+access-list ACL-WEBPROXY-TRAFFIC remark CRYPTO-PRO
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp any host 193.37.157.10 object-group DM_INLINE_TCP_26 
+access-list ACL-WEBPROXY-TRAFFIC remark ZOOMAGAZIN
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp any host 91.223.129.171 object-group DM_INLINE_TCP_24 
+access-list ACL-WEBPROXY-TRAFFIC remark ftp.micex
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp any host 91.208.232.245 object-group DM_INLINE_TCP_14 
+access-list ACL-WEBPROXY-TRAFFIC remark WESTERN-OFFICIAL
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp any object-group DM_INLINE_NETWORK_30 object-group DM_INLINE_TCP_22 
+access-list ACL-WEBPROXY-TRAFFIC remark Western
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp any object-group DM_INLINE_NETWORK_22 object-group DM_INLINE_TCP_8 
+access-list ACL-WEBPROXY-TRAFFIC remark OBKI
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp any host 95.131.26.130 object-group DM_INLINE_TCP_12 
+access-list ACL-WEBPROXY-TRAFFIC remark Reuters_2
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp any object-group DM_INLINE_NETWORK_35 object-group DM_INLINE_TCP_42 
+access-list ACL-WEBPROXY-TRAFFIC remark Reuters
+access-list ACL-WEBPROXY-TRAFFIC remark Reuters
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp any object-group DM_INLINE_NETWORK_31 object-group DM_INLINE_TCP_23 
+access-list ACL-WEBPROXY-TRAFFIC remark VISA-ONLINE
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp any host 198.241.150.55 object-group DM_INLINE_TCP_19 
+access-list ACL-WEBPROXY-TRAFFIC remark CBR Site
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp any object-group DM_INLINE_NETWORK_20 object-group DM_INLINE_TCP_17 
+access-list ACL-WEBPROXY-TRAFFIC remark CBR Site
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp any host 212.40.192.49 object-group DM_INLINE_TCP_16 
+access-list ACL-WEBPROXY-TRAFFIC remark WIN Oracle BD
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp any host 176.57.216.7 object-group DM_INLINE_TCP_15 
+access-list ACL-WEBPROXY-TRAFFIC remark Past authentification
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp object-group DM_INLINE_NETWORK_3 any object-group DM_INLINE_TCP_13 
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp object Sigalizaciya-Rumyancevo any object-group DM_INLINE_TCP_9 
+access-list ACL-WEBPROXY-TRAFFIC extended deny tcp object-group DM_INLINE_NETWORK_15 any object-group DM_INLINE_TCP_7 
+access-list ACL-WEBPROXY-TRAFFIC extended permit tcp object-group DM_INLINE_NETWORK_13 any object-group DM_INLINE_TCP_6 
+access-list ACL-WEBPROXY-TRAFFIC extended permit tcp object-group INTERNAL-NETS any object-group DM_INLINE_TCP_4 
+access-list kartstd_access_in extended permit object-group DM_INLINE_PROTOCOL_10 any any 
+access-list kartstd_access_in_1 extended permit object-group DM_INLINE_SERVICE_14 any any 
+access-list outside_cryptomap extended permit ip object KART-STD-LOCAL object KART-STD-NOVOSIB 
+access-list outside_2_cryptomap extended permit ip object KART-STD-LOCAL object KART-STD-NOVOSIB 
+access-list outside_cryptomap_2 extended permit ip object KART-STD-LOCAL object KART-STD-NOVOSIB 
+access-list mgmt_access_in extended permit object-group DM_INLINE_SERVICE_15 host 172.16.0.212 any inactive 
+access-list mgmt_access_in extended permit object-group DM_INLINE_SERVICE_13 any any 
+access-list TEST_3171 extended permit ip any host 10.255.0.13 
+access-list TEST_3171 extended permit tcp any host 10.255.0.13 
+access-list guest extended permit ip any any 
+access-list 1C-SPLIT standard permit 192.168.165.0 255.255.255.0 
+access-list outside_2_cryptomap_2 extended permit ip object ZOL-Korona-Local object ZOL-Korona-Novosib 
+access-list zol-korona extended permit icmp any any 
+access-list zol-korona extended permit ip any any 
+access-list zol-korona_access_in extended permit icmp any any 
+access-list zol-korona_access_in extended permit ip 10.10.12.0 255.255.255.0 object ZOL-Korona-Novosib 
+access-list rdp-acl webtype permit url rdp://192.168.120.142 log default
+no pager
+logging enable
+logging timestamp
+logging standby
+logging emblem
+logging buffer-size 1000000
+logging console emergencies
+logging monitor debugging
+logging buffered debugging
+logging trap informational
+logging history debugging
+logging asdm informational
+logging facility 16
+logging host inside 192.168.120.158
+logging debug-trace
+logging ftp-bufferwrap
+logging ftp-server 192.168.120.158 LOGS compadmin *****
+logging permit-hostdown
+logging class auth console emergencies mail emergencies trap debugging 
+logging class sys console alerts 
+logging class vpn history emergencies 
+mtu guest 1500
+mtu PUB-VipNET 1500
+mtu Private-VipNET 1500
+mtu uralsib 1500
+mtu kartstd 1500
+mtu inside 1500
+mtu mgmt 1500
+mtu proxy 1500
+mtu pos-term 1500
+mtu CB-OTCHET 1500
+mtu outside_2 1500
+mtu outside 1500
+mtu zol-korona 1500
+ip local pool ADMIN-VPN 172.16.255.230-172.16.255.240 mask 255.255.255.0
+ip local pool 1C-VPN 172.16.1.10-172.16.1.30 mask 255.255.255.0
+failover
+failover lan unit primary
+failover lan interface FAILOVER Ethernet0/2
+failover key *****
+failover mac address Ethernet0/0 5475.d0ba.6e68 0021.d8cb.e29a
+failover mac address Ethernet0/1 5475.d0ba.6e69 0021.d8cb.e29b
+failover mac address Ethernet0/3 5475.d0ba.6e6b 0021.d8cb.e29d
+failover mac address Management0/0 5475.d0ba.6e6c 0021.d8cb.e299
+failover link FAILOVER Ethernet0/2
+failover interface ip FAILOVER 192.168.255.1 255.255.255.0 standby 192.168.255.254
+monitor-interface guest
+monitor-interface uralsib
+monitor-interface inside
+monitor-interface mgmt
+monitor-interface pos-term
+icmp unreachable rate-limit 1 burst-size 1
+asdm image disk0:/asdm-711-52.bin
+no asdm history enable
+arp timeout 14400
+no arp permit-nonconnected
+nat (outside_2,mgmt) source static any any destination static interface IP_WebCam_Manage service 777 HTTP unidirectional inactive
+nat (outside_2,inside) source static any any destination static interface Bisquit_120.2 service 222 SSH unidirectional
+nat (outside_2,mgmt) source static any any destination static interface Site service 555 HTTP unidirectional
+nat (outside_2,mgmt) source static any any destination static interface NOUT-Ubnt service 4004 4000 unidirectional
+nat (outside_2,mgmt) source static any any destination static interface NNTPserver service nntp 443 unidirectional
+nat (outside_2,mgmt) source static any any destination static interface 172.16.0.47 service 4000 4000 unidirectional
+nat (outside_2,mgmt) source static any any destination static interface 172.16.0.47 service 5900 5900 unidirectional
+nat (outside_2,inside) source static any any destination static interface Video-192.168.148.2 service Radmin-TCP Radmin-TCP unidirectional
+nat (outside_2,mgmt) source static any any destination static interface QBis-test service 881 443 unidirectional
+nat (outside_2,mgmt) source static any any destination static interface QBis service 880 443 unidirectional
+nat (outside_2,mgmt) source static any any destination static interface QBis service HTTPS HTTPS unidirectional
+nat (outside_2,mgmt) source static any any destination static interface QBis service HTTP HTTPS unidirectional
+nat (outside_2,mgmt) source static any any destination static interface BCL-Test service 997 443 unidirectional
+nat (outside_2,mgmt) source static any any destination static interface BCL-Test service 998 9091 unidirectional
+nat (outside_2,mgmt) source static any any destination static interface BCL-Test service 999 SSH unidirectional
+nat (outside_2,mgmt) source static any any destination static interface QBis service 778 SSH unidirectional
+nat (outside_2,mgmt) source static any any destination static interface QBis-test service 779 SSH unidirectional
+nat (outside_2,mgmt) source static any any destination static Pos-DEST-Comcor WIFI-ZONE service HTTP HTTP unidirectional
+nat (outside_2,inside) source static any any destination static Pos-DEST-Comcor Bisquit_120.6 service 222 SSH unidirectional
+nat (outside_2,inside) source static any any destination static interface Video-192.168.148.2 service Video-9786 Video-9786 unidirectional
+nat (PUB-VipNET,outside_2) source static 192.168.15.2 interface destination static 109.207.2.12 109.207.2.12 service 55777udp 55777udp
+nat (outside_2,inside) source static any any destination static interface Bisquit_120.6 service Bisquit_444 SSH no-proxy-arp
+nat (guest,mgmt) source static any any destination static BIFIT_OUT-COMCOR BIFIT service 9091 9091 unidirectional
+nat (guest,mgmt) source static any any destination static BIFIT_OUT-COMCOR BIFIT service HTTPS HTTPS unidirectional
+nat (guest,mgmt) source static any any destination static QBis-OUT QBis service 880 443 unidirectional
+nat (guest,mgmt) source static any any destination static QBis-OUT QBis service HTTPS HTTPS unidirectional
+nat (outside_2,inside) source static any any destination static Mail_ISA_COMKOR Esa service SMTP SMTP unidirectional
+nat (outside_2,inside) source static any any destination static Mail_ISA_COMKOR EXCHANGE unidirectional
+nat (outside_2,mgmt) source static any any destination static BIFIT_OUT-COMCOR BIFIT service 9091 9091 unidirectional
+nat (outside_2,mgmt) source static any any destination static BIFIT_OUT-ZEBRA BIFIT service 9091 9091 unidirectional
+nat (outside_2,mgmt) source static any any destination static BIFIT_OUT-COMCOR BIFIT service HTTPS HTTPS unidirectional
+nat (outside_2,mgmt) source static any any destination static BIFIT_OUT-ZEBRA BIFIT service HTTPS HTTPS unidirectional
+nat (guest,outside) source dynamic GUEST-NET interface
+nat (guest,outside_2) source dynamic GUEST-NET interface
+nat (pos-term,uralsib) source static SSLclient-Neapol SSLclient-Neapol-TRANSL unidirectional
+nat (inside,outside_2) source dynamic Esa Mail_ISA_COMKOR
+nat (outside_2,any) source static any POS-ATM-TRANSL destination static Pos-DEST-Comcor POS-ATM-NOVOSIB-Transl service 3171 3171 unidirectional description 3 face
+nat (outside_2,any) source static any POS-ATM-TRANSL destination static Pos-DEST-Comcor POS-ATM-NOVOSIB-Transl service 3788 3788 unidirectional description 3 face
+nat (outside_2,any) source static any POS-ATM-TRANSL destination static Pos-DEST-Comcor POS-ATM-NOVOSIB-Transl service 3789 3789 unidirectional description 3 face
+nat (outside,mgmt) source static any any destination static BIFIT_OUT-ZEBRA BIFIT service 9091 9091 unidirectional
+nat (outside,mgmt) source static any any destination static BIFIT_OUT-ZEBRA BIFIT service HTTPS HTTPS unidirectional
+nat (outside,any) source static any POS-ATM-TRANSL destination static Pos-DEST-Zebra POS-ATM-NOVOSIB-Transl service 3171 3171 unidirectional description 3 face
+nat (outside,any) source static any POS-ATM-TRANSL destination static Pos-DEST-Zebra POS-ATM-NOVOSIB-Transl service 3788 3788 unidirectional description 3 face
+nat (outside,any) source static any POS-ATM-TRANSL destination static Pos-DEST-Zebra POS-ATM-NOVOSIB-Transl service 3789 3789 unidirectional description 3 face
+nat (pos-term,any) source static any POS-ATM-TRANSL destination static POS-ATM-NOVOSIB-Transl POS-ATM-NOVOSIB-Transl service 3171 3171 unidirectional
+nat (pos-term,any) source static any POS-ATM-TRANSL destination static POS-ATM-NOVOSIB-Transl POS-ATM-NOVOSIB-Transl service 3788 3788 unidirectional
+nat (pos-term,any) source static any POS-ATM-TRANSL destination static POS-ATM-NOVOSIB-Transl POS-ATM-NOVOSIB-Transl service 3789 3789 unidirectional
+nat (pos-term,any) source static any PROD-FILE-EXCH destination static EXCH-NOVOSIB EXCH-NOVOSIB service 11021 11021 unidirectional
+nat (pos-term,any) source static Pos-TEST-pool POS-ATM-TRANSL service 3171 3171 unidirectional
+nat (pos-term,any) source static POS-ATM-LOCAL-POOL POS-ATM-TRANSL unidirectional
+nat (pos-term,any) source static RRAS-pool POS-ATM-TRANSL service 3171 3171 unidirectional
+nat (pos-term,any) source static SSL-BIIS SSL-TRANSL-NOVOSIB unidirectional
+nat (zol-korona,any) source static CUP-Local CUP-Zol-Korona unidirectional
+nat (pos-term,any) source static PROD-WEB-LOCAL PROD-WEB-NOVOSIB-TRANSL unidirectional
+nat (pos-term,any) source static PROD-WEB-LOCAL_226 PROD-WEB-NOVOSIB-TRANSL unidirectional
+nat (pos-term,any) source static PROD-WEB-LOCAL_227 PROD-WEB-NOVOSIB-TRANSL unidirectional
+nat (pos-term,any) source static POS-ATM-LOCAL_224 POS-ATM-TRANSL unidirectional
+nat (pos-term,any) source static ZDO-Local PROD-EXCH-NOVOSIB-TRANSL unidirectional
+nat (pos-term,uralsib) source static Pos1-Neapol Pos1-Neapol-TRANSL unidirectional
+nat (pos-term,uralsib) source static Pos2-Neapol Pos2-Neapol-TRANSL unidirectional
+nat (pos-term,uralsib) source static Pos1-UG Pos1-UG-TRANSL unidirectional
+nat (pos-term,uralsib) source static Pos2-UG Pos2-UG-TRANSL unidirectional
+nat (pos-term,uralsib) source static Pos3-Neapol Pos3-Neapol-TRANSL unidirectional
+nat (pos-term,uralsib) source static Pos1-Lianozovo Pos1-Lianozovo-TRANSL unidirectional
+nat (pos-term,uralsib) source static Pos2-Lianozovo Pos2-Lianozovo-TRANSL unidirectional
+nat (pos-term,uralsib) source static Pos1-Milya Pos1-Milya-TRANSL unidirectional
+nat (pos-term,uralsib) source static Pos2-Milya Pos2-Milya-TRANSL unidirectional
+nat (pos-term,uralsib) source static Pos1-Pushka Pos1-Pushka-TRANSL unidirectional
+nat (pos-term,uralsib) source static Pos2-Pushka Pos2-Pushka-TRANSL unidirectional
+nat (pos-term,uralsib) source static Pos1-Savel Pos1-Savel-TRANSL unidirectional
+nat (pos-term,uralsib) source static Pos2-Savel Pos2-Savel-TRANSL unidirectional
+nat (pos-term,uralsib) source static RRAS-pool RRAS-TRANSL unidirectional
+nat (pos-term,uralsib) source static Bnk-Neapol Bnk-Neapol-TRANSL unidirectional
+nat (pos-term,uralsib) source static Bnk-Savel Bnk-Savel-TRANSL unidirectional
+nat (pos-term,uralsib) source static Bnk-UG Bnk-UG-TRANSL unidirectional
+nat (pos-term,uralsib) source static Bnk-RumCash1 Bnk-RumCash1-TRANSL unidirectional
+nat (pos-term,outside) source static SSLclient-Neapol SSLclient-Neapol-TRANSL unidirectional
+nat (pos-term,outside) source static Pos1-Neapol Pos1-Neapol-TRANSL unidirectional
+nat (pos-term,outside) source static Pos2-Neapol Pos2-Neapol-TRANSL unidirectional
+nat (pos-term,outside) source static Pos3-Neapol Pos3-Neapol-TRANSL unidirectional
+nat (pos-term,outside) source static Pos1-Lianozovo Pos1-Lianozovo-TRANSL unidirectional
+nat (pos-term,outside) source static Pos2-Lianozovo Pos2-Lianozovo-TRANSL unidirectional
+nat (pos-term,outside) source static Pos1-Milya Pos1-Milya-TRANSL unidirectional
+nat (pos-term,outside) source static Pos2-Milya Pos2-Milya-TRANSL unidirectional
+nat (pos-term,outside) source static Pos1-Pushka Pos1-Pushka-TRANSL unidirectional
+nat (pos-term,outside) source static Pos2-Pushka Pos2-Pushka-TRANSL unidirectional
+nat (pos-term,outside) source static Pos1-Savel Pos1-Savel-TRANSL unidirectional
+nat (pos-term,outside) source static Pos2-Savel Pos2-Savel-TRANSL unidirectional
+nat (pos-term,outside) source static RRAS-pool RRAS-TRANSL unidirectional
+nat (pos-term,outside) source static Pos-TEST-pool Pos-TEST-TRANSL unidirectional
+nat (pos-term,outside) source static Bnk-Neapol Bnk-Neapol-TRANSL unidirectional
+nat (pos-term,outside) source static Bnk-Lianozovo Bnk-Lianozovo-TRANSL unidirectional
+nat (pos-term,outside) source static Bnk-UG Bnk-UG-TRANSL unidirectional
+nat (pos-term,outside) source static Bnk-RumCash1 Bnk-RumCash1-TRANSL unidirectional
+nat (outside_2,any) source dynamic any Pos-Public-TRANSL destination static Pos-DEST-Comcor Pos-DEST-TRANSL service 1515 1515
+nat (outside_2,any) source dynamic any Pos-Public-TRANSL destination static Pos-DEST-Comcor Pos-DEST-TRANSL service 1313 1313
+nat (outside,any) source dynamic any Pos-Public-TRANSL destination static Pos-DEST-Zebra Pos-DEST-TRANSL service 1515 1515
+nat (outside,any) source dynamic any Pos-Public-TRANSL destination static Pos-DEST-Zebra Pos-DEST-TRANSL service 1313 1313
+nat (inside,any) source static private-net private-net destination static ADMIN-VPN-POOL ADMIN-VPN-POOL unidirectional
+nat (outside_2,any) source static Bnk-ALTUF Bnk-ALTUF-TRANSL destination static Pos-DEST-Comcor BNK-DEST-TRANSL service 10530 10530 unidirectional inactive
+nat (outside,any) source static Bnk-ALTUF Bnk-ALTUF-TRANSL destination static Pos-DEST-Zebra BNK-DEST-TRANSL service 10530 10530 unidirectional inactive
+nat (outside_2,any) source static Bnk-Rum-Stolov Bnk-Rum-Stolov-TRANSL destination static Pos-DEST-Comcor BNK-DEST-TRANSL service 10600 10556 unidirectional inactive
+nat (outside,any) source static Bnk-Rum-Stolov Bnk-Rum-Stolov-TRANSL destination static Pos-DEST-Comcor BNK-DEST-TRANSL service 10600 10556 unidirectional inactive
+nat (outside_2,any) source static Bnk-Mos Bnk-Mos-TRANSL destination static Pos-DEST-Comcor BNK-DEST-TRANSL service 10555 10555 unidirectional inactive
+nat (outside,any) source static Bnk-Mos Bnk-Mos-TRANSL destination static Pos-DEST-Zebra BNK-DEST-TRANSL service 10555 10555 unidirectional inactive
+nat (outside_2,any) source static Bnk-MOS2 Bnk-MOS2-TRANSL destination static Pos-DEST-Comcor Pos-DEST-TRANSL service 10529 10529 unidirectional inactive
+nat (outside,any) source static Bnk-MOS2 Bnk-MOS2-TRANSL destination static Pos-DEST-Zebra Pos-DEST-TRANSL service 10529 10529 unidirectional inactive
+nat (outside_2,any) source static Bnk-Dina Bnk-Dina-TRANSL destination static Pos-DEST-Comcor BNK-DEST-TRANSL service 10558 10556 unidirectional inactive
+nat (outside,any) source static Bnk-Dina Bnk-Dina-TRANSL destination static Pos-DEST-Zebra BNK-DEST-TRANSL service 10558 10556 unidirectional inactive
+nat (outside_2,any) source static Bnk-Fresh Bnk-Fresh-TRANSL destination static Pos-DEST-Comcor BNK-DEST-TRANSL service 10557 10556 unidirectional inactive
+nat (outside,any) source static Bnk-Fresh Bnk-Fresh-TRANSL destination static Pos-DEST-Zebra BNK-DEST-TRANSL service 10557 10556 unidirectional inactive
+nat (pos-term,uralsib) source static WS-Monit WS-Monit-TRANSL unidirectional
+nat (pos-term,outside) source static WS-Monit WS-Monit-TRANSL unidirectional
+nat (pos-term,uralsib) source static WS-Monit1 WS-Monit1-TRANSL unidirectional
+nat (pos-term,outside) source static WS-Monit1 WS-Monit1-TRANSL unidirectional
+nat (mgmt,any) source static MGMT-NET MGMT-NET destination static ADMIN-VPN-POOL ADMIN-VPN-POOL unidirectional
+nat (outside_2,inside) source static any any destination static Mail_ISA_COMKOR EXCHANGE service RDP RDP unidirectional
+nat (pos-term,uralsib) source static VIRT-Monit VIRT-Monit-TRANSL unidirectional
+nat (pos-term,outside) source static VIRT-Monit VIRT-Monit-TRANSL unidirectional
+nat (pos-term,uralsib) source static VIRT-Monit2 VIRT-Monit2-TRANSL unidirectional
+nat (pos-term,outside) source static VIRT-Monit2 VIRT-Monit2-TRANSL unidirectional
+nat (inside,outside_2) source dynamic LAN-Neapol-Ohrana interface
+nat (inside,outside_2) source dynamic LAN-Neapol-Inkassat interface
+nat (inside,outside_2) source dynamic LAN-Neapol-Voditeli interface
+nat (inside,outside_2) source dynamic LAN-Neapol-Oper interface
+nat (inside,outside_2) source dynamic LAN-Neapol-Kass interface
+nat (inside,outside_2) source dynamic LAN-Neapol-Kredit interface
+nat (inside,outside_2) source dynamic LAN-Neapol-Valut interface
+nat (inside,outside_2) source dynamic LAN-Neapol-Rozn interface
+nat (inside,outside_2) source dynamic LAN-Neapol-Scheta interface
+nat (inside,outside_2) source dynamic LAN-Neapol-Exec interface
+nat (inside,outside_2) source dynamic LAN-Neapol-Bukh interface
+nat (inside,outside_2) source dynamic LAN-Neapol-Law interface
+nat (inside,outside_2) source dynamic LAN-Neapol-Finmonitor interface
+nat (inside,outside_2) source dynamic LAN-1C interface destination static 83.69.203.58 83.69.203.58
+nat (inside,outside_2) source dynamic LAN-Neapol-Uchet interface
+nat (inside,outside_2) source dynamic LAN-Neapol-IT interface
+nat (inside,outside_2) source dynamic LAN-Neapol-Finoper interface
+nat (inside,outside_2) source dynamic LAN-Neapol-VIP interface
+nat (inside,outside_2) source dynamic AUDIT interface
+nat (inside,outside) source dynamic AUDIT interface
+nat (inside,outside) source dynamic LAN-Neapol-Ohrana interface
+nat (inside,outside) source dynamic LAN-Neapol-Inkassat interface
+nat (inside,outside) source dynamic LAN-Neapol-Voditeli interface
+nat (inside,outside) source dynamic LAN-Neapol-Oper interface
+nat (inside,outside) source dynamic LAN-Neapol-Kass interface
+nat (inside,outside) source dynamic LAN-Neapol-Kredit interface
+nat (inside,outside) source dynamic LAN-Neapol-Valut interface
+nat (inside,outside) source dynamic LAN-Neapol-Rozn interface
+nat (inside,outside) source dynamic LAN-Neapol-Scheta interface
+nat (inside,outside) source dynamic LAN-Neapol-Exec interface
+nat (inside,outside) source dynamic LAN-Neapol-Bukh interface
+nat (inside,outside) source dynamic LAN-Neapol-Law interface
+nat (inside,outside) source dynamic LAN-Neapol-Finmonitor interface
+nat (inside,outside) source dynamic LAN-Neapol-Uchet interface
+nat (inside,outside) source dynamic LAN-Neapol-IT interface
+nat (inside,outside) source dynamic LAN-Neapol-Finoper interface
+nat (inside,outside_2) source static any any destination static NETWORK_OBJ_172.16.255.0_24 NETWORK_OBJ_172.16.255.0_24 no-proxy-arp route-lookup
+nat (mgmt,outside_2) source static any any destination static NETWORK_OBJ_172.16.255.0_24 NETWORK_OBJ_172.16.255.0_24 no-proxy-arp route-lookup
+nat (CB-OTCHET,outside_2) source static CB-VM CB-VM-TRANSL unidirectional
+nat (inside,outside_2) source static any any destination static NETWORK_OBJ_172.16.255.224_27 NETWORK_OBJ_172.16.255.224_27 no-proxy-arp route-lookup
+!
+object network ISA
+ nat (inside,outside_2) dynamic interface
+object network obj-172.16.0.0
+ nat (mgmt,outside_2) dynamic interface
+object network private-net
+ nat (inside,outside_2) dynamic interface
+object network 23-NET
+ nat (inside,outside_2) dynamic interface
+object network 24-NET
+ nat (inside,outside_2) dynamic interface
+object network 43-NET
+ nat (inside,outside_2) dynamic interface
+object network 44-NET
+ nat (inside,outside_2) dynamic interface
+object network 45-NET
+ nat (inside,outside_2) dynamic interface
+object network 46-NET
+ nat (inside,outside_2) dynamic interface
+object network 47-NET
+ nat (inside,outside_2) dynamic interface
+object network 70-NET
+ nat (inside,outside_2) dynamic interface
+object network 128-NET
+ nat (inside,outside_2) dynamic interface
+object network 129-NET
+ nat (inside,outside_2) dynamic interface
+object network 130-NET
+ nat (inside,outside_2) dynamic interface
+object network 131-NET
+ nat (inside,outside_2) dynamic interface
+object network 140-NET
+ nat (inside,outside_2) dynamic interface
+object network proxy-inet
+ nat (proxy,outside_2) dynamic interface
+object network 192.168.145.2
+ nat (inside,outside_2) dynamic interface
+object network wsa
+ nat (inside,outside_2) dynamic interface
+object network 132
+ nat (inside,outside_2) dynamic interface
+object network private-net-rez
+ nat (inside,outside) dynamic interface
+object network obj-172.16.0.0-rez
+ nat (mgmt,outside) dynamic interface
+object network wsa-rez
+ nat (inside,outside) dynamic interface
+object network 192.168.145.2-rez
+ nat (inside,outside) dynamic interface
+object network 23-NET-rez
+ nat (inside,outside) dynamic interface
+object network 24-NET-rez
+ nat (inside,outside) dynamic interface
+object network 43-NET-rez
+ nat (inside,outside) dynamic interface
+object network 44-NET-rez
+ nat (inside,outside) dynamic interface
+object network ISA-rez
+ nat (inside,outside) dynamic interface
+object network 45-NET-rez
+ nat (inside,outside) dynamic interface
+object network 128-NET-rez
+ nat (inside,outside) dynamic interface
+object network 46-NET-rez
+ nat (inside,outside) dynamic interface
+object network 47-NET-rez
+ nat (inside,outside) dynamic interface
+object network 70-NET-rez
+ nat (inside,outside) dynamic interface
+object network 129-NET-rez
+ nat (inside,outside) dynamic interface
+object network 130-NET-rez
+ nat (inside,outside) dynamic interface
+object network 131-NET-rez
+ nat (inside,outside) dynamic interface
+object network 132-rez
+ nat (inside,outside) dynamic interface
+object network 140-NET-rez
+ nat (inside,outside) dynamic interface
+object network 133-NET
+ nat (inside,outside_2) dynamic interface
+object network 133-NET-rez
+ nat (inside,outside) dynamic interface
+object network MDaemon
+ nat (inside,outside_2) dynamic interface dns
+object network 77-NET
+ nat (inside,outside_2) dynamic interface
+object network 77-NET-rez
+ nat (inside,outside) dynamic interface
+object network LABS
+ nat (any,outside_2) dynamic interface
+object network 78-NET
+ nat (inside,outside_2) dynamic interface
+object network 135_6_etag
+ nat (inside,outside_2) dynamic interface dns
+object network 83-NET
+ nat (inside,outside_2) dynamic interface
+access-group guest_access_in in interface guest
+access-group PUB-VipNET_access_in in interface PUB-VipNET
+access-group Private-VipNET_access_in in interface Private-VipNET
+access-group DENYALL in interface uralsib
+access-group kartstd_access_in_1 in interface kartstd
+access-group INSIDE in interface inside
+access-group mgmt_access_in in interface mgmt
+access-group proxy_access_in in interface proxy
+access-group POS-TERM in interface pos-term
+access-group CB-OTCHET_access_in in interface CB-OTCHET
+access-group outside_ISP2_access_in in interface outside_2
+access-group outside_Zebra_access_in in interface outside
+access-group zol-korona_access_in in interface zol-korona
+route outside_2 0.0.0.0 0.0.0.0 62.117.66.73 1 track 1
+route uralsib 10.24.1.0 255.255.255.0 10.24.253.217 1 track 2
+route outside 0.0.0.0 0.0.0.0 217.14.246.33 253
+route outside 10.24.1.0 255.255.255.0 217.14.246.33 253
+route uralsib 10.24.255.6 255.255.255.255 10.24.253.217 1
+route pos-term 192.168.12.0 255.255.255.0 10.10.10.2 1
+route pos-term 192.168.13.0 255.255.255.0 10.10.10.2 1
+route pos-term 192.168.14.0 255.255.255.0 10.10.10.2 1
+route pos-term 192.168.15.0 255.255.255.0 10.10.10.2 1
+route pos-term 192.168.16.0 255.255.255.0 10.10.10.2 1
+route pos-term 192.168.19.0 255.255.255.0 10.10.10.2 1
+route inside 192.168.23.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.24.0 255.255.255.0 192.168.20.222 1
+route pos-term 192.168.32.0 255.255.255.0 10.10.10.2 1
+route pos-term 192.168.33.0 255.255.255.0 10.10.10.2 1
+route pos-term 192.168.34.0 255.255.255.0 10.10.10.2 1
+route pos-term 192.168.35.0 255.255.255.0 10.10.10.2 1
+route pos-term 192.168.36.0 255.255.255.0 10.10.10.2 1
+route inside 192.168.36.12 255.255.255.255 192.168.20.222 1
+route pos-term 192.168.37.0 255.255.255.0 10.10.10.2 1
+route pos-term 192.168.39.0 255.255.255.0 10.10.10.2 1
+route inside 192.168.43.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.44.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.45.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.46.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.47.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.48.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.49.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.51.2 255.255.255.255 192.168.20.222 1
+route inside 192.168.77.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.78.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.83.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.90.0 255.255.255.0 192.168.20.222 1
+route inside private-net 255.255.255.0 192.168.20.222 1
+route inside Dopoff-Savel 255.255.255.0 192.168.20.222 1
+route inside Dopoff-Lianozovo 255.255.255.0 192.168.20.222 1
+route inside 192.168.130.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.131.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.132.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.133.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.135.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.140.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.141.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.142.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.143.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.144.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.145.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.148.2 255.255.255.255 192.168.20.222 1
+route inside 192.168.150.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.151.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.152.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.153.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.160.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.161.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.162.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.163.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.164.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.165.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.170.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.171.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.172.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.180.0 255.255.255.0 192.168.20.222 1
+route inside 192.168.181.0 255.255.255.0 192.168.20.222 1
+route outside 195.234.190.3 255.255.255.255 217.14.246.33 1
+timeout xlate 3:00:00
+timeout pat-xlate 0:00:30
+timeout conn 1:03:00 half-closed 0:10:00 udp 0:02:00 icmp 0:00:02
+timeout sunrpc 0:10:00 h323 0:05:00 h225 1:00:00 mgcp 0:05:00 mgcp-pat 0:05:00
+timeout sip 0:30:00 sip_media 0:02:00 sip-invite 0:03:00 sip-disconnect 0:02:00
+timeout sip-provisional-media 0:02:00 uauth 0:05:00 absolute
+timeout tcp-proxy-reassembly 0:01:00
+timeout floating-conn 0:00:00
+dynamic-access-policy-record DfltAccessPolicy
+ webvpn
+  url-list value Test
+aaa-server TACACS+ protocol tacacs+
+aaa-server NIP-AD protocol ldap
+aaa-server NIP-AD (inside) host 192.168.120.50
+ server-port 389
+ ldap-base-dn DC=nipbank,DC=ru
+ ldap-scope subtree
+ ldap-login-password *****
+ ldap-login-dn CN=NIPASA,CN=Users,DC=nipbank,DC=ru
+ server-type microsoft
+aaa-server NIP-AD (inside) host 192.168.120.51
+ server-port 389
+ ldap-base-dn DC=nipbank,DC=ru
+ ldap-scope subtree
+ ldap-login-password *****
+ ldap-login-dn CN=NIPASA,CN=Users,DC=nipbank,DC=ru
+ server-type microsoft
+aaa-server NIPADAG protocol radius
+ ad-agent-mode
+aaa-server NIPADAG (inside) host 192.168.120.39
+ key *****
+aaa-server NIPADAG2 protocol radius
+ ad-agent-mode
+aaa-server NIPADAG2 (inside) host 192.168.120.35
+ key *****
+user-identity domain NIPBANK aaa-server NIP-AD
+user-identity default-domain NIPBANK
+no user-identity action mac-address-mismatch remove-user-ip
+no user-identity inactive-user-timer
+user-identity poll-import-user-group-timer hours 1
+user-identity ad-agent aaa-server NIPADAG
+user-identity user-not-found enable
+aaa authentication ssh console LOCAL 
+aaa authentication telnet console LOCAL 
+aaa authentication enable console LOCAL 
+aaa authentication http console LOCAL 
+aaa authentication serial console LOCAL 
+aaa authorization command LOCAL 
+aaa authorization exec authentication-server
+http server enable 4444
+http server session-timeout 60
+http 172.16.0.47 255.255.255.255 mgmt
+http 172.16.0.252 255.255.255.255 mgmt
+http 192.168.20.222 255.255.255.255 inside
+http 0.0.0.0 0.0.0.0 outside_2
+http 172.16.0.226 255.255.255.255 mgmt
+http 172.16.255.47 255.255.255.255 mgmt
+http 172.16.0.225 255.255.255.255 mgmt
+http 172.16.0.251 255.255.255.255 mgmt
+http 0.0.0.0 0.0.0.0 mgmt
+snmp-server host inside 192.168.120.38 poll community *****
+snmp-server location Moscow
+snmp-server contact admin
+snmp-server community *****
+snmp-server enable traps snmp authentication linkup linkdown coldstart
+sysopt noproxyarp guest
+sysopt noproxyarp uralsib
+sysopt noproxyarp kartstd
+sysopt noproxyarp inside
+sysopt noproxyarp mgmt
+sysopt noproxyarp pos-term
+sla monitor 1
+ type echo protocol ipIcmpEcho 62.117.66.73 interface outside_2
+ num-packets 3
+ frequency 10
+sla monitor schedule 1 life forever start-time now
+sla monitor 2
+ type echo protocol ipIcmpEcho 10.24.255.6 interface uralsib
+ num-packets 10
+ frequency 5
+sla monitor schedule 2 life forever start-time now
+crypto ipsec ikev1 transform-set URALSIB esp-3des esp-md5-hmac 
+crypto ipsec ikev1 transform-set VPN esp-aes-256 esp-sha-hmac 
+crypto ipsec ikev1 transform-set ESP-AES-128-SHA esp-aes esp-sha-hmac 
+crypto ipsec ikev1 transform-set ESP-AES-128-MD5 esp-aes esp-md5-hmac 
+crypto ipsec ikev1 transform-set ESP-AES-192-SHA esp-aes-192 esp-sha-hmac 
+crypto ipsec ikev1 transform-set ESP-AES-192-MD5 esp-aes-192 esp-md5-hmac 
+crypto ipsec ikev1 transform-set ESP-AES-256-SHA esp-aes-256 esp-sha-hmac 
+crypto ipsec ikev1 transform-set ESP-AES-256-MD5 esp-aes-256 esp-md5-hmac 
+crypto ipsec ikev1 transform-set ESP-AES-128-SHA-TRANS esp-aes esp-sha-hmac 
+crypto ipsec ikev1 transform-set ESP-AES-128-SHA-TRANS mode transport
+crypto ipsec ikev1 transform-set ESP-AES-128-MD5-TRANS esp-aes esp-md5-hmac 
+crypto ipsec ikev1 transform-set ESP-AES-128-MD5-TRANS mode transport
+crypto ipsec ikev1 transform-set ESP-AES-192-SHA-TRANS esp-aes-192 esp-sha-hmac 
+crypto ipsec ikev1 transform-set ESP-AES-192-SHA-TRANS mode transport
+crypto ipsec ikev1 transform-set ESP-AES-192-MD5-TRANS esp-aes-192 esp-md5-hmac 
+crypto ipsec ikev1 transform-set ESP-AES-192-MD5-TRANS mode transport
+crypto ipsec ikev1 transform-set ESP-AES-256-SHA-TRANS esp-aes-256 esp-sha-hmac 
+crypto ipsec ikev1 transform-set ESP-AES-256-SHA-TRANS mode transport
+crypto ipsec ikev1 transform-set ESP-AES-256-MD5-TRANS esp-aes-256 esp-md5-hmac 
+crypto ipsec ikev1 transform-set ESP-AES-256-MD5-TRANS mode transport
+crypto ipsec ikev1 transform-set ESP-3DES-SHA esp-3des esp-sha-hmac 
+crypto ipsec ikev1 transform-set ESP-3DES-MD5 esp-3des esp-md5-hmac 
+crypto ipsec ikev1 transform-set ESP-3DES-SHA-TRANS esp-3des esp-sha-hmac 
+crypto ipsec ikev1 transform-set ESP-3DES-SHA-TRANS mode transport
+crypto ipsec ikev1 transform-set ESP-3DES-MD5-TRANS esp-3des esp-md5-hmac 
+crypto ipsec ikev1 transform-set ESP-3DES-MD5-TRANS mode transport
+crypto ipsec ikev1 transform-set ESP-DES-SHA esp-des esp-sha-hmac 
+crypto ipsec ikev1 transform-set ESP-DES-MD5 esp-des esp-md5-hmac 
+crypto ipsec ikev1 transform-set ESP-DES-SHA-TRANS esp-des esp-sha-hmac 
+crypto ipsec ikev1 transform-set ESP-DES-SHA-TRANS mode transport
+crypto ipsec ikev1 transform-set ESP-DES-MD5-TRANS esp-des esp-md5-hmac 
+crypto ipsec ikev1 transform-set ESP-DES-MD5-TRANS mode transport
+crypto ipsec ikev1 transform-set KART-STD esp-3des esp-sha-hmac 
+crypto ipsec ikev1 transform-set CB esp-aes esp-sha-hmac 
+crypto ipsec ikev1 transform-set ZOL-Korona esp-3des esp-sha-hmac 
+crypto ipsec ikev2 ipsec-proposal AES256
+ protocol esp encryption aes-256
+ protocol esp integrity sha-1 md5
+crypto ipsec ikev2 ipsec-proposal AES192
+ protocol esp encryption aes-192
+ protocol esp integrity sha-1 md5
+crypto ipsec ikev2 ipsec-proposal AES
+ protocol esp encryption aes
+ protocol esp integrity sha-1 md5
+crypto ipsec ikev2 ipsec-proposal 3DES
+ protocol esp encryption 3des
+ protocol esp integrity sha-1 md5
+crypto ipsec ikev2 ipsec-proposal DES
+ protocol esp encryption des
+ protocol esp integrity sha-1 md5
+crypto dynamic-map ADMIN-RA-VPN 65535 set ikev1 transform-set VPN
+crypto dynamic-map ADMIN-RA-VPN 65535 set ikev2 ipsec-proposal AES256 AES192 AES 3DES DES
+crypto map URALSIB 10 match address VPN
+crypto map URALSIB 10 set pfs 
+crypto map URALSIB 10 set peer 10.24.255.6 
+crypto map URALSIB 10 set ikev1 transform-set URALSIB
+crypto map URALSIB interface uralsib
+crypto map URALSIB2 10 match address VPN
+crypto map URALSIB2 10 set pfs 
+crypto map URALSIB2 10 set peer 195.234.190.3 
+crypto map URALSIB2 10 set ikev1 transform-set URALSIB
+crypto map VPN 1 match address outside_2_cryptomap
+crypto map VPN 1 set pfs 
+crypto map VPN 1 set peer 194.85.126.170 
+crypto map VPN 1 set ikev1 transform-set KART-STD
+crypto map VPN 2 match address outside_2_cryptomap_1
+crypto map VPN 2 set pfs 
+crypto map VPN 2 set peer 213.165.200.34 
+crypto map VPN 2 set ikev1 transform-set CB
+crypto map VPN 2 set ikev2 ipsec-proposal DES 3DES AES AES192 AES256
+crypto map VPN 3 match address outside_2_cryptomap_2
+crypto map VPN 3 set pfs 
+crypto map VPN 3 set peer 193.232.37.225 
+crypto map VPN 3 set ikev1 transform-set ZOL-Korona
+crypto map VPN 65535 ipsec-isakmp dynamic ADMIN-RA-VPN
+crypto map VPN interface outside_2
+crypto map VPN2 1 match address outside_2_cryptomap
+crypto map VPN2 1 set pfs 
+crypto map VPN2 1 set peer 194.85.126.170 
+crypto map VPN2 1 set ikev1 transform-set KART-STD
+crypto map VPN2 interface outside
+crypto ca trustpoint ASDM_TrustPoint0
+ enrollment terminal
+ subject-name CN=fw
+ crl configure
+crypto ca trustpoint ASDM_TrustPoint1
+ enrollment terminal
+ subject-name CN=fw
+ crl configure
+crypto ca trustpoint ASDM_TrustPoint2
+ enrollment self
+ subject-name CN=62.117.66.74
+ keypair RDP-KEYS
+ crl configure
+crypto ca trustpoint SelfsignedCert
+ enrollment self
+ subject-name CN=62.117.66.74
+ serial-number
+ keypair RDP-KEYS
+ crl configure
+crypto ca certificate chain ASDM_TrustPoint2
+ certificate f3903455
+    308201cd 30820136 a0030201 020204f3 90345530 0d06092a 864886f7 0d010105 
+    0500302b 310b3009 06035504 03130266 77311c30 1a06092a 864886f7 0d010902 
+    160d6677 2e6e6970 62616e6b 2e727530 1e170d31 36303930 33303531 3732335a 
+    170d3236 30393031 30353137 32335a30 2b310b30 09060355 04031302 6677311c 
+    301a0609 2a864886 f70d0109 02160d66 772e6e69 7062616e 6b2e7275 30819f30 
+    0d06092a 864886f7 0d010101 05000381 8d003081 89028181 00c9b24b d3e16831 
+    134e4335 93915444 ee378bb7 0d5d2cee 40cf938b 9884e28e 70215233 c6af66a3 
+    ee0d6533 1c8d5116 3a479d1a da3a3deb 3bb7b15f 6052e8c9 6f1f8c1d 15d1ae32 
+    7e3eab0f 8ef2fe56 c3c96197 01e17b26 d2df66ef d9cb014d 1d9e85cd 3fdf4471 
+    8f53e7a9 45da01dd 2104716a ccc163ba 2464c9f1 5e02644e 95020301 0001300d 
+    06092a86 4886f70d 01010505 00038181 00ac4a01 f2816637 6971edc8 8caa4ac1 
+    79c58715 36af93d0 4524d079 b79a4f4d 98a19595 b84192dd fdd0d7fb 0e398626 
+    371e6659 c6fc13c1 832d59ac 5f49b04a bfb06c4d 5fb6597c 9adcff67 48d5be0a 
+    05fe291b b6ef340c 357b8d42 7159a634 5f592a87 375d8d76 e10f9aff 91e18d19 
+    44bf163b c7e3b82b 668b7f1d 608ac996 45
+  quit
+crypto ca certificate chain SelfsignedCert
+ certificate f4903455
+    30820209 30820172 a0030201 020204f4 90345530 0d06092a 864886f7 0d010105 
+    05003049 31153013 06035504 03130c36 322e3131 372e3636 2e373431 30301206 
+    03550405 130b4a4d 58313432 354c3047 53301a06 092a8648 86f70d01 0902160d 
+    66772e6e 69706261 6e6b2e72 75301e17 0d313630 39303331 30333633 325a170d 
+    32363039 30313130 33363332 5a304931 15301306 03550403 130c3632 2e313137 
+    2e36362e 37343130 30120603 55040513 0b4a4d58 31343235 4c304753 301a0609 
+    2a864886 f70d0109 02160d66 772e6e69 7062616e 6b2e7275 30819f30 0d06092a 
+    864886f7 0d010101 05000381 8d003081 89028181 00c9b24b d3e16831 134e4335 
+    93915444 ee378bb7 0d5d2cee 40cf938b 9884e28e 70215233 c6af66a3 ee0d6533 
+    1c8d5116 3a479d1a da3a3deb 3bb7b15f 6052e8c9 6f1f8c1d 15d1ae32 7e3eab0f 
+    8ef2fe56 c3c96197 01e17b26 d2df66ef d9cb014d 1d9e85cd 3fdf4471 8f53e7a9 
+    45da01dd 2104716a ccc163ba 2464c9f1 5e02644e 95020301 0001300d 06092a86 
+    4886f70d 01010505 00038181 008d8743 69041789 1ca82d93 f0c80aad 03103839 
+    4220cf6e 3f1a25fb 00ced5df 434298cd 1c4b9698 98727ffd 84a7d7be 6dc98e9b 
+    bf4a5705 05bc9f7c d53cc9ee 3daf8e7c 33508e7f c5f161de f98286df 7032abd5 
+    4b22df6f d73158bd 6c5ed7b3 69d8a28c 725b9c85 c0137dbf 18b12ecb 58c94542 
+    b1e2ca1a 1b97839d 490f7f53 4f
+  quit
+crypto isakmp identity address 
+crypto ikev2 policy 1
+ encryption aes-256
+ integrity sha
+ group 5 2
+ prf sha
+ lifetime seconds 86400
+crypto ikev2 policy 10
+ encryption aes-192
+ integrity sha
+ group 5 2
+ prf sha
+ lifetime seconds 86400
+crypto ikev2 policy 20
+ encryption aes
+ integrity sha
+ group 5 2
+ prf sha
+ lifetime seconds 86400
+crypto ikev2 policy 30
+ encryption 3des
+ integrity sha
+ group 2
+ prf sha
+ lifetime seconds 86400
+crypto ikev2 policy 40
+ encryption des
+ integrity sha
+ group 5 2
+ prf sha
+ lifetime seconds 86400
+crypto ikev2 enable outside_2
+crypto ikev2 remote-access trustpoint ASDM_TrustPoint2
+crypto ikev1 enable uralsib
+crypto ikev1 enable outside_2
+crypto ikev1 enable outside
+crypto ikev1 policy 3
+ authentication pre-share
+ encryption aes
+ hash sha
+ group 2
+ lifetime 86400
+crypto ikev1 policy 10
+ authentication pre-share
+ encryption 3des
+ hash sha
+ group 2
+ lifetime 3600
+!
+track 1 rtr 1 reachability
+!
+track 2 rtr 2 reachability
+telnet timeout 5
+ssh 0.0.0.0 0.0.0.0 inside
+ssh 172.16.0.47 255.255.255.255 mgmt
+ssh 172.16.0.252 255.255.255.255 mgmt
+ssh 172.16.255.0 255.255.255.0 mgmt
+ssh 172.16.255.47 255.255.255.255 mgmt
+ssh 0.0.0.0 0.0.0.0 outside_2
+ssh 0.0.0.0 0.0.0.0 outside
+ssh timeout 15
+ssh version 2
+ssh key-exchange group dh-group1-sha1
+console timeout 0
+management-access mgmt
+dhcpd address 192.168.2.90-192.168.2.130 guest
+dhcpd dns 8.8.8.8 interface guest
+dhcpd lease 3000 interface guest
+dhcpd enable guest
+!
+threat-detection basic-threat
+threat-detection statistics port
+threat-detection statistics protocol
+threat-detection statistics access-list
+no threat-detection statistics tcp-intercept
+wccp 90 redirect-list ACL-WEBPROXY-TRAFFIC
+wccp interface inside 90 redirect in
+ntp authenticate
+ntp server 88.147.254.235 source outside_2 prefer
+ssl trust-point ASDM_TrustPoint2 inside
+ssl trust-point ASDM_TrustPoint2 outside_2
+ssl trust-point ASDM_TrustPoint2 mgmt
+webvpn
+ port 4455
+ enable inside
+ enable mgmt
+ enable outside_2
+ dtls port 4455
+ no anyconnect-essentials
+ anyconnect image disk0:/anyconnect-linux-64-4.0.02052-k9.pkg 1
+ anyconnect image disk0:/anyconnect-win-3.1.03103-k9.pkg 2
+ anyconnect profiles 1c_new_client_profile disk0:/1c_new_client_profile.xml
+ anyconnect profiles New-ANY-3_client_profile disk0:/New-ANY-3_client_profile.xml
+ anyconnect enable
+ tunnel-group-list enable
+group-policy ssl_web_rdp internal
+group-policy ssl_web_rdp attributes
+ vpn-tunnel-protocol ssl-clientless
+group-policy CB-GROUP internal
+group-policy CB-GROUP attributes
+ vpn-tunnel-protocol ikev1 ikev2 
+group-policy DfltGrpPolicy attributes
+ vpn-tunnel-protocol ikev1 ikev2 l2tp-ipsec 
+ webvpn
+  customization value Test
+group-policy GroupPolicy_Any-VPN internal
+group-policy GroupPolicy_Any-VPN attributes
+ wins-server none
+ dns-server value 192.168.120.50 192.168.120.51
+ vpn-tunnel-protocol ssl-client ssl-clientless
+ default-domain value nipbank.ru
+ webvpn
+  url-list none
+  customization value Test
+group-policy ADMIN-RA-VPN internal
+group-policy ADMIN-RA-VPN attributes
+ vpn-tunnel-protocol ikev1 
+ split-tunnel-policy tunnelspecified
+ split-tunnel-network-list value ADMIN-SPLIT
+ address-pools value ADMIN-VPN
+group-policy ZOL-Korona-Policy internal
+group-policy ZOL-Korona-Policy attributes
+ vpn-tunnel-protocol ikev1 
+group-policy GroupPolicy_1c_new internal
+group-policy GroupPolicy_1c_new attributes
+ wins-server none
+ dns-server value 192.168.120.50 192.168.120.51
+ vpn-tunnel-protocol ikev2 ssl-client 
+ default-domain value nipbank.ru
+ webvpn
+  anyconnect profiles value 1c_new_client_profile type user
+group-policy GroupPolicy_1c internal
+group-policy GroupPolicy_1c attributes
+ wins-server none
+ dns-server value 192.168.120.50 192.168.120.51
+ vpn-tunnel-protocol ikev2 ssl-client ssl-clientless
+ split-tunnel-policy tunnelspecified
+ split-tunnel-network-list value 1C-SPLIT
+ default-domain value nipbank.ru
+group-policy GroupPolicy_New-ANY-3 internal
+group-policy GroupPolicy_New-ANY-3 attributes
+ wins-server none
+ dns-server value 192.168.120.50 192.168.120.51
+ vpn-tunnel-protocol l2tp-ipsec 
+ split-tunnel-policy tunnelspecified
+ split-tunnel-network-list value ADMIN-SPLIT
+ default-domain value nipbank.ru
+ webvpn
+  anyconnect profiles value New-ANY-3_client_profile type user
+  customization value Test
+group-policy GroupPolicy_ANY-VPN2 internal
+group-policy GroupPolicy_ANY-VPN2 attributes
+ wins-server none
+ dns-server value 192.168.120.50 192.168.120.51
+ vpn-tunnel-protocol ikev1 ikev2 ssl-client ssl-clientless
+ split-tunnel-policy tunnelspecified
+ split-tunnel-network-list value ADMIN-SPLIT
+ default-domain value nipbank.ru
+ webvpn
+  url-list value Test
+  customization value Test
+group-policy IPsecGroupPolicy internal
+group-policy IPsecGroupPolicy attributes
+ vpn-tunnel-protocol ikev1 
+group-policy KART-STD-Policy internal
+group-policy KART-STD-Policy attributes
+ vpn-tunnel-protocol ikev1 
+group-policy NEW_ANY_3 internal
+group-policy NEW_ANY_3 attributes
+ webvpn
+  customization value Test
+username weekadmin password hgg5PLYAPTnB3vQF encrypted
+username weekadmin attributes
+ service-type remote-access
+username efimenko password igpG7MabrgQMo0rr encrypted
+username efimenko attributes
+ vpn-group-policy ADMIN-RA-VPN
+ service-type remote-access
+username user1c password vwEcHtK/QJzKPP48 encrypted
+username uservpn password n7w52DApTAKbAaRl encrypted
+username uservpn attributes
+ service-type remote-access
+username e3eVPN password AxKsv/K3MM694ZH/ encrypted
+username remvord password 66d.dOJ6dPcYPZdP encrypted privilege 15
+username remvord attributes
+ vpn-framed-ip-address 172.16.255.47 255.255.255.255
+ webvpn
+  url-list value Test
+username shamrin password ZHnVw2KgaUM3.XPl encrypted
+username mail password q0reQj02QfCaPueK encrypted
+username mail attributes
+ service-type remote-access
+tunnel-group 10.24.255.6 type ipsec-l2l
+tunnel-group 10.24.255.6 general-attributes
+ default-group-policy IPsecGroupPolicy
+tunnel-group 10.24.255.6 ipsec-attributes
+ ikev1 pre-shared-key *****
+tunnel-group 195.234.190.3 type ipsec-l2l
+tunnel-group 195.234.190.3 general-attributes
+ default-group-policy IPsecGroupPolicy
+tunnel-group 195.234.190.3 ipsec-attributes
+ ikev1 pre-shared-key *****
+tunnel-group 1c_new type remote-access
+tunnel-group 1c_new general-attributes
+ address-pool 1C-VPN
+ default-group-policy GroupPolicy_1c
+tunnel-group 1c_new webvpn-attributes
+ group-alias 1c_new enable
+tunnel-group Any-VPN type remote-access
+tunnel-group Any-VPN general-attributes
+ address-pool ADMIN-VPN
+ default-group-policy GroupPolicy_Any-VPN
+tunnel-group Any-VPN webvpn-attributes
+ group-alias Any-VPN enable
+tunnel-group ANY-VPN2 type remote-access
+tunnel-group ANY-VPN2 general-attributes
+ address-pool ADMIN-VPN
+ default-group-policy GroupPolicy_ANY-VPN2
+tunnel-group ANY-VPN2 webvpn-attributes
+ group-alias ANY-VPN2 enable
+tunnel-group 194.85.126.170 type ipsec-l2l
+tunnel-group 194.85.126.170 general-attributes
+ default-group-policy KART-STD-Policy
+tunnel-group 194.85.126.170 ipsec-attributes
+ ikev1 pre-shared-key *****
+tunnel-group 213.165.200.34 type ipsec-l2l
+tunnel-group 213.165.200.34 general-attributes
+ default-group-policy CB-GROUP
+tunnel-group 213.165.200.34 ipsec-attributes
+ ikev1 pre-shared-key *****
+ ikev2 remote-authentication pre-shared-key *****
+ ikev2 local-authentication pre-shared-key *****
+tunnel-group TESST-1c type remote-access
+tunnel-group 193.232.37.225 type ipsec-l2l
+tunnel-group 193.232.37.225 general-attributes
+ default-group-policy ZOL-Korona-Policy
+tunnel-group 193.232.37.225 ipsec-attributes
+ ikev1 pre-shared-key *****
+tunnel-group shamrin type remote-access
+tunnel-group shamrin general-attributes
+ address-pool ADMIN-VPN
+ default-group-policy GroupPolicy_New-ANY-3
+tunnel-group shamrin webvpn-attributes
+ group-alias shamrin enable
+tunnel-group 1c type remote-access
+tunnel-group 1c general-attributes
+ address-pool 1C-VPN
+ default-group-policy GroupPolicy_1c
+tunnel-group 1c webvpn-attributes
+ group-alias 1c enable
+ group-url https://192.168.120.173 enable
+tunnel-group New-ANY-3 type remote-access
+tunnel-group New-ANY-3 general-attributes
+ address-pool ADMIN-VPN
+ default-group-policy GroupPolicy_New-ANY-3
+tunnel-group New-ANY-3 webvpn-attributes
+ customization Test
+ group-alias New-ANY-3 enable
+tunnel-group Saturday type remote-access
+tunnel-group Saturday general-attributes
+ address-pool ADMIN-VPN
+ default-group-policy GroupPolicy_ANY-VPN2
+tunnel-group Saturday webvpn-attributes
+ group-alias WeekEND disable
+ group-alias WeekEND_ADMIN enable
+!
+class-map type regex match-any RESTRICTED-ADMIN-URLS
+ match regex 7YA.RU
+ match regex ATWOLA.COM
+ match regex CLUB-SALE.RU
+ match regex GOODSFORHOME.RU
+ match regex GUNS.RU
+ match regex LIFE.RU
+ match regex PIKABU.RU
+ match regex WILDBERRIES.RU
+ match regex RTC.1TV.RU
+ match regex MPA.ONE.MICROSOFT.COM
+ match regex DATING
+ match regex FACEBOOK
+ match regex ODNOKLASSNIKI
+ match regex VK.COM
+ match regex MEDIAGET
+class-map type inspect http match-any URL-ADMIN-FILTER
+ match request header host regex class RESTRICTED-ADMIN-URLS
+class-map GUEST
+ match access-list guest
+class-map HTTP-ADMIN-TRAFFIC
+ match access-list URL-ADMIN-FILTER
+class-map type regex match-any RESTRICTED-URLS
+ match regex 4LOL
+ match regex ANONIMAIZER
+ match regex ANONIMAJZER
+ match regex ANONIMKA
+ match regex ANONYMIZER
+ match regex ANTIZAPRET
+ match regex ARTFACET
+ match regex BENZCLUB
+ match regex DATING
+ match regex DOSTUPEST
+ match regex FACEBOOK
+ match regex FISHKI
+ match regex GIDEPARK
+ match regex GMAIL
+ match regex LAPARFUMERIE
+ match regex LIVEJOURNAL
+ match regex LIVEPLANET
+ match regex MAGIC.RU
+ match regex MAIL.RU
+ match regex MAMBA
+ match regex MINERABI
+ match regex MOIKRUG
+ match regex MYBRUTE
+ match regex NEUTRALXE
+ match regex OBHODI
+ match regex ODNOKLASSNIKI
+ match regex PAGEWASH
+ match regex PRIVET.RU
+ match regex PROXY
+ match regex RADIKAL
+ match regex SWEB.RU
+ match regex TIMP
+ match regex TWITTER
+ match regex TWOYSTYLE.RU
+ match regex VHODILKA.RU
+ match regex VK.COM
+ match regex VKONTAKTE
+ match regex VKRUGUDRUZEI
+ match regex WEBWARPER
+ match regex YAPLAKAL
+ match regex YOUTUBE
+ match regex ZERKALO
+ match regex ZR.RU
+ match regex BANNER.RBC.RU
+ match regex FOTKI.YANDEX.RU
+ match regex MAIL.RAMBLER.RU
+ match regex MAIL.YA.RU
+ match regex MAIL.YANDEX.RU
+ match regex V3.MEGACON.SU
+ match regex 7YA.RU
+ match regex ATWOLA.COM
+ match regex CLUB-SALE.RU
+ match regex GOODSFORHOME.RU
+ match regex GUNS.RU
+ match regex LIFE.RU
+ match regex PIKABU.RU
+ match regex WILDBERRIES.RU
+ match regex RTC.1TV.RU
+ match regex MPA.ONE.MICROSOFT.COM
+ match regex Megashara
+ match regex rutracker.org
+ match regex MEDIAGET
+ match regex mamochki.by
+ match regex mama.ru
+class-map type inspect http match-any URL-FILTER
+ match request header host regex class RESTRICTED-URLS
+class-map inspection_default
+ match default-inspection-traffic
+class-map HTTP-TRAFFIC
+ match access-list HTTP-TRAFFIC
+!
+!
+policy-map type inspect dns preset_dns_map
+ parameters
+  message-length maximum 512
+policy-map global_policy
+ class inspection_default
+  inspect dns preset_dns_map 
+  inspect ftp 
+  inspect h323 h225 
+  inspect h323 ras 
+  inspect rsh 
+  inspect rtsp 
+  inspect skinny  
+  inspect esmtp 
+  inspect sqlnet 
+  inspect sunrpc 
+  inspect tftp 
+  inspect sip  
+  inspect xdmcp 
+  inspect icmp 
+  inspect pptp 
+  inspect ipsec-pass-thru 
+  inspect ip-options 
+ class class-default
+  user-statistics accounting
+policy-map global-policy
+policy-map type inspect http URL-FILTER
+ parameters
+policy-map type inspect dns migrated_dns_map_1
+ parameters
+  message-length maximum 512
+policy-map GST1
+ class GUEST
+  police output 5000000
+!
+service-policy global_policy global
+service-policy GST1 interface guest
+smtp-server 192.168.120.25
+prompt hostname priority state 
+no call-home reporting anonymous
+call-home
+ profile CiscoTAC-1
+  no active
+  destination address http https://tools.cisco.com/its/service/oddce/services/DDCEService
+  destination address email callhome@cisco.com
+  destination transport-method http
+  subscribe-to-alert-group diagnostic
+  subscribe-to-alert-group environment
+  subscribe-to-alert-group inventory periodic monthly
+  subscribe-to-alert-group configuration periodic monthly
+  subscribe-to-alert-group telemetry periodic daily
+Cryptochecksum:9575250d4202f65ca0d293d6065a59a7
+: end
+fw/pri/act# 
