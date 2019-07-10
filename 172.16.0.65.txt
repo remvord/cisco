@@ -31,7 +31,7 @@ clock timezone MSK 3 0
 system mtu routing 1500
 !
 !
-ip domain-name nipbank.ru
+ip domain-name
 !
 password encryption aes
 !

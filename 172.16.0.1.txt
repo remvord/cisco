@@ -1,16 +1,19 @@
 Type help or '?' for a list of available commands.
-fw/pri/act> ena
+
+fw/pri/act> ena
 Password: *********
-fw/pri/act# terminal length 0
+
+fw/pri/act# terminal length 0
                      ^
 ERROR: % Invalid input detected at '^' marker.
-fw/pri/act# sh run
+
+fw/pri/act# sh run
 : Saved
 :
 ASA Version 8.4(5) 
 !
 hostname fw
-domain-name nipbank.ru
+domain-name
 enable password rK2Qn2AWonA57AJO encrypted
 passwd pUNuESM58DTiE9RR encrypted
 names
@@ -3820,4 +3823,5 @@ call-home
   subscribe-to-alert-group telemetry periodic daily
 Cryptochecksum:9575250d4202f65ca0d293d6065a59a7
 : end
-fw/pri/act# 
+
+fw/pri/act# 
