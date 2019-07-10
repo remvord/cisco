@@ -2,8 +2,8 @@ import time
 from datetime import datetime
 import paramiko
 
-login = 'admin'
-passw = 'bREw7axaEsx.'
+login = ''
+passw = ''
 
 client = paramiko.SSHClient()
 client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
