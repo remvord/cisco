@@ -1,7 +1,7 @@
 
 Floor4-1(24)-sw#ena
 Floor4-1(24)-sw#bREw7axaEsx.
-Translating "bREw7axaEsx."...domain server (255.255.255.255)
+Translating ""...domain server (255.255.255.255)
 % Unknown command or computer name, or unable to find computer address
 Floor4-1(24)-sw#terminal length 0
 Floor4-1(24)-sw#sh run
@@ -23,9 +23,9 @@ hostname Floor4-1(24)-sw
 boot-start-marker
 boot-end-marker
 !
-enable secret 5 $1$wKui$OxKsfCK/Vv973aD/QdShK/
+enable secret 5 ''
 !
-username admin privilege 15 password 7 0204367E1C510E394D6B1A014B
+username admin privilege 15 password 7 ''
 no aaa new-model
 clock timezone MSK 3 0
 system mtu routing 1500
@@ -199,7 +199,7 @@ snmp-server community public RO
 !
 !
 line con 0
- password 7 0306692E115820544F2C0A1D59
+ password 7 ''
 line vty 0 4
  exec-timeout 0 0
  login local
