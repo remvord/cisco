@@ -14,8 +14,8 @@ ASA Version 8.4(5)
 !
 hostname fw
 domain-name
-enable password rK2Qn2AWonA57AJO encrypted
-passwd pUNuESM58DTiE9RR encrypted
+enable password '' encrypted
+passwd '' encrypted
 names
 name 192.168.20.2 gate_net20
 name 192.168.20.0 net20
