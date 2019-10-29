@@ -1,6 +1,6 @@
 
 Floor4-1(24)-sw#ena
-Floor4-1(24)-sw#bREw7axaEsx.
+Floor4-1(24)-sw#''
 Translating ""...domain server (255.255.255.255)
 % Unknown command or computer name, or unable to find computer address
 Floor4-1(24)-sw#terminal length 0
